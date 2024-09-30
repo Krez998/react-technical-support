@@ -1,0 +1,27 @@
+.request-note {
+    /* align-self: start; */
+    /* width: 100%; */
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; */
+    /* padding-left: 10px;
+    padding-right: 50px; */
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    max-width: 100%;
+    border-radius: 10px;
+    /* text-align: center; */
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25); 
+}
+
+.request-note label {
+    font-size:medium;  
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight:normal;
+    text-align: left;
+    border-radius: 5px;
+    max-width: 100%;
+    border-radius: 10px;    
+}
