@@ -2,7 +2,7 @@ import "./Page.css";
 import { useState } from "react";
 import RequestsList from "../components/requestsList/RequestsList";
 
-function ExecutorPage(props) {
+function AdministratorPage(props) {
   const [isRequestListVisible, setRequestListVisible] = useState(false);
 
   const showRequestList = () => {
@@ -13,10 +13,14 @@ function ExecutorPage(props) {
     <section>
       <div className="left-menu">
         <h2>
-          {props.userData.firstName} {props.userData.lastName} {props.userData.patronymic}
+          {props.userData.firstName} {props.userData.lastName}{" "}
+          {props.userData.patronymic}
         </h2>
         <button onClick={showRequestList}>Все заявки</button>
-        <button>Инструкции</button>
+        <button>Распределние заявки</button>
+        <button>Создание пользователей</button>
+        <button>Настройка справочников</button>
+        <button>Создание отчетов</button>
       </div>
       {isRequestListVisible && (
         <div className="main-window">
@@ -27,4 +31,4 @@ function ExecutorPage(props) {
   );
 }
 
-export default ExecutorPage;
+export default AdministratorPage;

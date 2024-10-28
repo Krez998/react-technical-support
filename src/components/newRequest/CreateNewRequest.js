@@ -2,12 +2,15 @@ import "./CreateNewRequest.css";
 import { useState } from "react";
 
 function CreateNewRequest({ onCreate }){
-    const [request, setRequest] = useState(null);
+    const [request, setRequest] = useState({
+        issueType: 'Принтер',
+        priority: 'срочно'
+      });
 
     const submit = (e) => {
-        e.preventDefault();
-        setRequest(null);
+        e.preventDefault();      
         onCreate(request);
+        //setRequest(null);
     };
 
     return (
@@ -20,16 +23,18 @@ function CreateNewRequest({ onCreate }){
             <label>Категория</label>    
             <select
                 placeholder="Категория"
+                value={request.issueType}
                 onChange={(e) => setRequest({...request, issueType: e.target.value })}>
                     <option>Программа</option>
                     <option>Компьютер/тонкий клиент</option>
                     <option>Принтер</option>
                     <option>Проблема с доступом/утеря логина или пароля</option>
                     <option>Прочее</option>
-                </select>
+            </select>
             <label>Приоритет</label> 
             <select 
                 placeholder="Приоритет"
+                value={request.priority}
                 onChange={(e) => setRequest({...request, priority: e.target.value })}>
                     <option>очень срочно</option>
                     <option>срочно</option>                

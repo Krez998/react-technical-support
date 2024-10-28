@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { login } from "./services/LoginServices";
+import { useState, useEffect, useContext } from "react";
 import { fetchRequests, createRequest } from "./services/RequestServices";
 import Background from "./components/background/Background";
 import BackgroundContainer from "./components/background/BackgroundContainer";
@@ -7,6 +6,7 @@ import CreateNewRequest from "./components/newRequest/CreateNewRequest";
 import Login from "./components/login/login";
 import UserPage from "./pages/UserPage";
 import ExecutorPage from "./pages/ExecutorPage";
+import AdministratorPage from "./pages/AdministratorPage";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,52 +15,45 @@ import {
   Outlet,
   useLocation,
   useNavigate,
-  NavLink
+  NavLink,
 } from "react-router-dom";
 
 function App() {
 
-  useEffect(() => {
-    const LOAD_DATA = async () => {
-      await fetchRequests();
-    };
-
-    LOAD_DATA();
-  }, []);
-
-  // const createNewRequest = async (request) => {
-  //   await createRequest(request);
-  // };
-
-  
+  const [componentToRender, setComponent] = useState(null);
   const [userData, setUserData] = useState(null);
 
   const getUserData = async (userData) => {
     setUserData(userData);
-  }
+  };
 
-  let componentToRender;
-
-  if (userData && userData.userType === 0) {
-    componentToRender = <UserPage userData={userData}/>;
-  } else if (userData && userData.userType === 1) {
-    componentToRender = <ExecutorPage userData={userData}/>;
-  } else {
-    componentToRender = <Login onAuth={getUserData} />;
-  }
+  useEffect(() => {
+    if (userData) {
+      switch (userData.userType) {
+        case 0:
+          setComponent(<UserPage userData={userData} />);
+          break;
+        case 1:
+          setComponent(<ExecutorPage userData={userData} />);
+          break;
+        case 2:
+          setComponent(<AdministratorPage userData={userData} />);
+          break;
+        default:
+          setComponent(<Login onAuth={getUserData} />);
+      }
+    }
+    else {
+      setComponent(<Login onAuth={getUserData} />);
+    }
+  }, [userData]);
 
   return (
     <div>
-
       <BackgroundContainer>
         <Background/>
-
         {componentToRender}
-
-        {/* <CreateNewRequest onCreate={createNewRequest}>
-        </CreateNewRequest> */}
-
-      </BackgroundContainer>   
+      </BackgroundContainer>
     </div>
   );
 }
