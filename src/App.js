@@ -6,7 +6,7 @@ import CreateNewRequest from "./components/newRequest/CreateNewRequest";
 import Login from "./components/login/login";
 import UserPage from "./pages/UserPage";
 import ExecutorPage from "./pages/ExecutorPage";
-import AdministratorPage from "./pages/AdministratorPage";
+import AdministratorPage from "./pages/administrator/AdministratorPage";
 import {
   BrowserRouter as Router,
   Route,

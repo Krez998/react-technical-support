@@ -28,7 +28,8 @@ function UserPage(props) {
     <div>
       <div className="left-menu">
         <h2>
-          {props.userData.firstName} {props.userData.lastName}{" "}
+          {props.userData.lastName}&nbsp;
+          {props.userData.firstName}&nbsp;
           {props.userData.patronymic}
         </h2>
         <button onClick={showRequestList}>Мои заявки</button>

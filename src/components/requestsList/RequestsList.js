@@ -37,15 +37,16 @@ function RequestsList(props) {
     fetchData();
   }, [filter]);
 
-  let height = '100%'
-  const divStyle = {
-    height: height
+  let dispBlockStyle = {
+    // display: "block",
+    width: "100%",
+    height: "100%",
   };
 
   return (
-    <div className="requests-window">
+    <div style={dispBlockStyle}>
       {!isRequestVisible && (
-        <div style={divStyle}>
+        <div className="requests-window">
           <div className="request-filter">
             {/* <Toggle label="Сначала новые" toggled={true} onClick={logState} /> */}
             <Toggle
@@ -78,9 +79,9 @@ function RequestsList(props) {
       {isRequestVisible && (
         <Request
           onCloseRequest={cancelRequestHandler}
-          requestNumber={currentRequest.id}
-          title={currentRequest.title}
-          status={currentRequest.status}
+          id={currentRequest.id}
+          // title={currentRequest.title}
+          // status={currentRequest.status}
         />
       )}
     </div>
