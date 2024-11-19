@@ -1,6 +1,6 @@
-import "./Page.css";
+import "../../Page.css";
 import { useState } from "react";
-import RequestsList from "../components/requestsList/RequestsList";
+import UserRequestsList from "../../user/requestList/UserRequestsList";
 
 function ExecutorPage(props) {
   const [isRequestListVisible, setRequestListVisible] = useState(false);
@@ -22,7 +22,7 @@ function ExecutorPage(props) {
       </div>
       {isRequestListVisible && (
         <div className="main-window">
-          <RequestsList />
+          <UserRequestsList />
         </div>
       )}
     </section>

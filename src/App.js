@@ -4,9 +4,9 @@ import Background from "./components/background/Background";
 import BackgroundContainer from "./components/background/BackgroundContainer";
 import CreateNewRequest from "./components/newRequest/CreateNewRequest";
 import Login from "./components/login/login";
-import UserPage from "./pages/UserPage";
-import ExecutorPage from "./pages/ExecutorPage";
-import AdministratorPage from "./pages/administrator/AdministratorPage";
+import UserPage from "./pages/user/page/UserPage";
+import ExecutorPage from "./pages/executor/page/ExecutorPage";
+import AdministratorPage from "./pages/administrator/page/AdministratorPage";
 import {
   BrowserRouter as Router,
   Route,

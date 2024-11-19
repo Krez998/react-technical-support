@@ -5,6 +5,7 @@ export const fetchRequests = async (filter) => {
     var response = await axios.get("https://localhost:7257/api/Request", {
       params: {
         status: filter?.status,
+        isShowNotAssigned: filter?.isShowNotAssigned,
       },
     });
     return response.data;

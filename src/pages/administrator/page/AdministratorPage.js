@@ -1,6 +1,6 @@
-import "../Page.css";
+import "../../Page.css";
 import { useState } from "react";
-import RequestsList from "../../components/requestsList/RequestsList";
+import AdminRequestsList from "../requestList/AdminRequestsList";
 
 function AdministratorPage(props) {
   const [isRequestListVisible, setRequestListVisible] = useState(false);
@@ -23,7 +23,7 @@ function AdministratorPage(props) {
       </div>
       {isRequestListVisible && (
         <div className="main-window">
-          <RequestsList />
+          <AdminRequestsList />
         </div>
       )}
     </section>

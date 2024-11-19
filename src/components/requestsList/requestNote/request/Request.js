@@ -89,6 +89,7 @@ const Request = (props) => {
     }
 
     fetchData();
+    props.onSavedChanges();
   };
 
   const chooseExecutorHandler = (id, fullName) => {

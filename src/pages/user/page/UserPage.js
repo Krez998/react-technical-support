@@ -1,8 +1,8 @@
-import "./Page.css";
-import CreateNewRequest from "../components/newRequest/CreateNewRequest";
-import { createRequest } from "../services/RequestServices";
+import "../../Page.css";
+import CreateNewRequest from "../../../components/newRequest/CreateNewRequest";
+import { createRequest } from "../../../services/RequestServices";
 import { useState } from "react";
-import RequestsList from "../components/requestsList/RequestsList";
+import UserRequestsList from "../requestList/UserRequestsList";
 
 function UserPage(props) {
   const [isRequestListVisible, setRequestListVisible] = useState(false);
@@ -39,7 +39,7 @@ function UserPage(props) {
         {isCreateRequestVisible && (
           <CreateNewRequest onCreate={createNewRequest} />
         )}
-        {isRequestListVisible && <RequestsList />}
+        {isRequestListVisible && <UserRequestsList />}
       </div>
     </div>
   );

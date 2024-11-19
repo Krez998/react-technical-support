@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
-import "./RequestsList.css";
-import RequestNote from "./requestNote/RequestNote";
+import "./ExecutorRequestsList.css";
 import moment from "moment";
 import "moment/locale/ru";
-import Request from "./requestNote/request/Request";
-import { Toggle } from "../toggle/Toggle";
-import { fetchRequests } from "../../services/RequestServices";
+import Request from "../../../components/requestsList/requestNote/request/Request";
+import { Toggle } from "../../../components/toggle/Toggle";
+import { fetchRequests } from "../../../services/RequestServices";
+import RequestNote from "../../../components/requestsList/requestNote/RequestNote";
 moment.locale();
 
-function RequestsList(props) {
+function ExecutorRequestsList(props) {
   const [isRequestVisible, setIsRequestVisible] = useState(false);
   const [requests, setRequests] = useState([]);
   const [currentRequest, setCurrentRequest] = useState(null);
   const [filter, setFilter] = useState({
     status: 5,
+    isShowNotAssigned: false,
   });
+  const [isRequestChangesSaved, setIsRequestChangesSaved] = useState(false);
+
   const inputRequestHandler = (request) => {
     setCurrentRequest(request);
     setIsRequestVisible(true);
@@ -27,15 +30,25 @@ function RequestsList(props) {
       ? setFilter({ ...filter, status: 5 })
       : setFilter({ ...filter, status: null });
   };
+  const showNotAssignedRequests = (state) => {
+    state
+      ? setFilter({ ...filter, isShowNotAssigned: true })
+      : setFilter({ ...filter, isShowNotAssigned: false });
+  };
 
   const fetchData = async () => {
     let requests = await fetchRequests(filter);
     setRequests(requests);
+    setIsRequestChangesSaved(false);
   };
 
   useEffect(() => {
     fetchData();
-  }, [filter]);
+  }, [filter, isRequestChangesSaved]);
+
+  const rerenderList = () => {
+    setIsRequestChangesSaved(true);
+  };
 
   let dispBlockStyle = {
     // display: "block",
@@ -53,6 +66,11 @@ function RequestsList(props) {
               label="Скрыть закрытые"
               toggled={true}
               onClick={hideClosedRequests}
+            />
+            <Toggle
+              label="Показать неназначенные"
+              toggled={filter.isShowNotAssigned}
+              onClick={showNotAssignedRequests}
             />
           </div>
           <ul className="request-list">
@@ -79,6 +97,7 @@ function RequestsList(props) {
       {isRequestVisible && (
         <Request
           onCloseRequest={cancelRequestHandler}
+          onSavedChanges={rerenderList}
           id={currentRequest.id}
           // title={currentRequest.title}
           // status={currentRequest.status}
@@ -88,4 +107,4 @@ function RequestsList(props) {
   );
 }
 
-export default RequestsList;
+export default ExecutorRequestsList;
