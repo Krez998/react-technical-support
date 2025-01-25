@@ -1,0 +1,15 @@
+.requests-structure-container {
+    display: flex;
+    gap: 5px;
+}
+
+.requests-structure-container button {
+    border: none;
+    border-radius: 5px; /* Закругление углов */
+    cursor: pointer; /* Указатель курсора */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход */
+}
+
+.requests-structure-container button:hover {
+    background-color: wheat; /* Цвет фона при наведении */
+}

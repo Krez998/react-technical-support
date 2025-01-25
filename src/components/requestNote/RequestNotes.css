@@ -1,0 +1,118 @@
+.request-notes {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
+    list-style: none;
+    margin: 1rem 1rem 0rem 1rem;
+    padding-left: 0;
+    height: 100%;
+    /* width: 100%; */
+    max-width: 100%;
+    overflow-y: auto; /* Добавляет прокрутку по вертикали, если содержимое превышает высоту */
+    overflow-x: auto;
+}
+
+.request-note-header {
+    display: flex;
+    padding: 10px 10px 0px 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.request-note {
+    display: flex;
+    padding-left: 10px;
+    padding: 10px;
+    margin: 10px 10px 10px 10px;
+    max-width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    /* text-align: center; */
+    /* box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);  */
+}
+
+.request-note-header-first-column {
+    width: 50px;
+    min-width: 25px;
+    display: flex;
+}
+.request-note-header-second-column {
+    width: 200px;
+}
+.request-note-header-third-column {
+    display: flex;
+    width: 600px;
+    min-width: 200px;
+}
+
+.request-note-first-column {
+    width: 50px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.request-note-status-bar {
+    /* position: absolute; */
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.request-note-second-column {
+    font-size:medium;  
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight:normal;
+    text-align: left;
+    border-radius: 5px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.request-note-third-column {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    min-width: 200px;
+}
+.request-note-third-column > label:nth-child(1) {
+    font-size:medium;  
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight:bold;
+    text-align: left;
+    width: 100%;
+    border-radius: 10px;
+}
+.request-note-third-column > div:nth-child(2) {
+    font-size:medium;  
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight:normal;
+    text-align: left;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.request-note-fourth-column {
+    display: flex; /* Родительский элемент как flex-контейнер */
+    /* align-items: flex-end; /* Выравнивание по нижнему краю */
+    justify-content: flex-end; /* Выравнивание по правому краю */
+    width: calc(100% - 50px - 200px - 600px);
+    
+}
+
+.request-note-unread-messages {  
+    width: 40px;
+    height: 30px;
+    border-radius: 40%;
+    background-color: blue;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.request-note-unread-messages-numb {
+    font-size:medium;  
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight:bold;
+    color: white;
+}

@@ -1,0 +1,65 @@
+.new-user-form {
+    align-self: start;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
+}
+
+.new-user-form label {
+    font-size: large;  
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    text-align: left;
+    border-radius: 5px;
+    max-width: 100%;
+}
+
+.new-user-form input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    max-width: 100%;
+}
+
+.new-user-form select {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    max-width: 100%;
+}
+
+.new-user-form textarea {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    max-width: 100%;
+}
+
+.new-user-form button {
+    font: inherit;
+    cursor: pointer;
+    border: 1px solid #2a5b84;
+    background-color: #2a842a;
+    color: #fefae1;
+    border-radius: 10px;
+    margin-right: 3px;
+    width: 400px;
+    height: 50px;
+    max-width: 100%;
+}
+
+.new-user-form button:hover,
+.new-user-form button:active {
+  background-color: #2a5c84b2;
+  border-color: #2a5c84b2;
+}

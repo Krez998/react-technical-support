@@ -4,9 +4,9 @@ import Background from "./components/background/Background";
 import BackgroundContainer from "./components/background/BackgroundContainer";
 import CreateNewRequest from "./components/newRequest/CreateNewRequest";
 import Login from "./components/login/login";
-import UserPage from "./pages/user/page/UserPage";
-import ExecutorPage from "./pages/executor/page/ExecutorPage";
-import AdministratorPage from "./pages/administrator/page/AdministratorPage";
+import UserPage from "./components/pages/user/UserPage"
+import ExecutorPage from "./components/pages/executor/ExecutorPage";
+import AdminPage from "./components/pages/administrator/AdminPage";
 import {
   BrowserRouter as Router,
   Route,
@@ -37,7 +37,7 @@ function App() {
           setComponent(<ExecutorPage userData={userData} />);
           break;
         case 2:
-          setComponent(<AdministratorPage userData={userData} />);
+          setComponent(<AdminPage userData={userData} />);
           break;
         default:
           setComponent(<Login onAuth={getUserData} />);

@@ -1,0 +1,16 @@
+.admin-requests-filter {
+  margin: 1rem 1rem 0rem 1rem;
+  padding: 0rem;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
+  /* display: flex;
+  flex-direction: row;
+  align-items: center; */
+  height: 50px;
+  display: flex;
+  gap: 10px; /* Расстояние между переключателями */
+  align-items: center; /* Вертикальное выравнивание элементов */
+  justify-content: space-between; /* Распределяем пространство между элементами */
+  padding-inline-start: 10px;
+}
