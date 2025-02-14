@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     if (userData) {
-      switch (userData.userType) {
+      switch (userData.role) {
         case 0:
           setComponent(<UserPage userData={userData} />);
           break;

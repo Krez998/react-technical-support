@@ -3,35 +3,51 @@ import { useState } from "react";
 import { login } from "../../services/LoginServices";
 
 function Login({ onAuth }) {
-    const [userData, setData] = useState(null);
+    const [userData, setUserData] = useState({ login: '', password: '' });
     const [error, setError] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //onAuth(userData);
-        
-        login(userData)
-          .then((response) => {
-              if (response.status === 200) {
-                  onAuth(response.data);
-                  setError(null);
-                } else {
-                  setError(response.data);
-                }
-        });
+        setError(null);
+
+        try {
+          const response = await login(userData);
+          if (response.status === 200) {
+            onAuth(response.data.user);
+            localStorage.setItem('token', response.data.token);
+          } else {
+            setError(response.data);
+          }
+        } catch (err) {
+          setError("Произошла ошибка при входе. Пожалуйста, попробуйте снова.");
+        }
+
+        // login(userData)
+        //   .then((response) => {
+        //       if (response.status === 200) {
+        //           onAuth(response.data.user);
+        //           localStorage.setItem('token', response.data.token);
+        //           setError(null);
+        //         } else {
+        //           setError(response.data);
+        //         }
+        // });
     };
 
     return (
         <div>         
           <form onSubmit={handleSubmit} className="login-form">
             <h2>Авторизация</h2>
-            <input type="text" 
-                placeholder="Логин"
-                onChange={(e) => setData({...userData, username: e.target.value})} />
-            <input type="password" 
-                placeholder="Пароль"
-                onChange={(e) => setData({...userData, password: e.target.value})} />
-
+            <input 
+              type="text"
+              placeholder="Логин"
+              value={userData.login}
+              onChange={(e) => setUserData({...userData, login: e.target.value})} />
+            <input 
+              type="password"
+              placeholder="Пароль"
+              value={userData.password}
+              onChange={(e) => setUserData({...userData, password: e.target.value})} />
             <button type="submit">Войти</button>
           </form>
           {error && <div style={{ color: 'red' }}>{error}</div>}

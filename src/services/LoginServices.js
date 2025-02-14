@@ -2,9 +2,7 @@ import axios from "axios";
 
 export const login = async (data) => {
    try {
-      var response = await axios.post("https://localhost:7257/api/Auth", data);
-      console.log(response.status);
-      console.log(response.data);
+      var response = await axios.post(`https://localhost:7257/login?login=${data.login}&password=${data.password}`);
       return response;
    }
    catch (e) {
