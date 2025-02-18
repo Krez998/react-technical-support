@@ -11,10 +11,6 @@
   .tile {
     position: relative; /* чтобы круг мог позиционироваться относительно карточки */
     border: 1px solid #ccc;
-    /* display: flex; */
-    /* align-items: center; Центрирование по вертикали */
-    /* justify-content: center; Центрирование по горизонтали */
-    /* height: 100px; Высота плитки */
     border-radius: 8px;
     padding: 15px;
     background-color: #f9f9f9;
@@ -26,9 +22,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute; /* Устанавливаем абсолютное позиционирование для круга */
-    top: -10px; /* Расстояние от верхнего края карточки */
-    right: -10px; /* Расстояние от правого края карточки */
+    position: absolute;
+    top: -10px;
+    right: -10px;
     width: 30px;
     height: 30px;
     border-radius: 50%;

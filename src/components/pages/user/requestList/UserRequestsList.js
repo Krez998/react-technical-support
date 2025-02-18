@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import "./UserRequestsList.css";
-import moment from "moment";
-import "moment/locale/ru";
-import UserRequest from "./request/UserRequest";
 import { Toggle } from "../../../filters/toggle/Toggle";
 import { fetchRequests } from "../../../../services/RequestServices";
-import RequestNotes from "../../../requestNote/RequestNotes";
 import { RequestsStructure } from "../../../filters/requestsStructure/RequestsStructure";
 import RequestTiles from "../../../requestTile/RequestTiles";
-moment.locale();
+import RequestNotes from "../../../requestNote/RequestNotes";
+import UserRequest from "./request/UserRequest";
 
 function UserRequestsList(props) {
   const [isRequestVisible, setIsRequestVisible] = useState(false);
@@ -20,13 +17,13 @@ function UserRequestsList(props) {
   const [listType, setListType] = useState(1);
   const [isRequestChangesSaved, setIsRequestChangesSaved] = useState(false);
 
-  const inputRequestHandler = (requestId) => {
-    setCurrentRequestId(requestId);
-    setIsRequestVisible(true);
-  };
-  const cancelRequestHandler = () => {
-    setIsRequestVisible(false);
-  };
+  // const inputRequestHandler = (requestId) => {
+  //   setCurrentRequestId(requestId);
+  //   setIsRequestVisible(true);
+  // };
+  // const cancelRequestHandler = () => {
+  //   setIsRequestVisible(false);
+  // };
   const hideClosedRequests = (state) => {
     state
       ? setFilter({ ...filter, status: 5 })
@@ -75,26 +72,28 @@ function UserRequestsList(props) {
             {listType === 1 ? (
               <RequestNotes
                 requests={requests}
-                onOpenRequest={(requestId) => inputRequestHandler(requestId)}
+                onOpenRequest={props.openRequest}
+                // onOpenRequest={(requestId) => inputRequestHandler(requestId)}
               />
             ) : (
               <RequestTiles
                 requests={requests}
-                onOpenRequest={(requestId) => inputRequestHandler(requestId)}
+                onOpenRequest={props.openRequest}
+                //onOpenRequest={(requestId) => inputRequestHandler(requestId)}
               />
             )}
           </div>
         </div>
       )}
-      {isRequestVisible && (
+      {/* {isRequestVisible && (
         <UserRequest
-          onCloseRequest={cancelRequestHandler}
+          onCloseRequest={props.onCloseRequest}
           onSavedChanges={rerenderList}
           id={currentRequestId}
           // title={currentRequest.title}
           // status={currentRequest.status}
         />
-      )}
+      )} */}
     </div>
   );
 }

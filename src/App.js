@@ -51,7 +51,7 @@ function App() {
   return (
     <div>
       <BackgroundContainer>
-        <Background/>
+        {/* <Background/> */}
         {componentToRender}
       </BackgroundContainer>
     </div>

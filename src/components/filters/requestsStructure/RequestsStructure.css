@@ -9,7 +9,9 @@
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    background-color: transparent;
+    /* transition: background-color 0.3s, color 0.3s; */
+    transition: filter 0.3s ease;
 }
 
 .requests-structure-container button img {
@@ -18,5 +20,6 @@
 }
 
 .requests-structure-container button:hover {
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
+    filter: sepia(1) saturate(10) hue-rotate(210deg);
 }

@@ -1,7 +1,7 @@
 import "./CreateNewRequest.css";
 import { useState } from "react";
 
-function CreateNewRequest({ onCreate }){
+function CreateNewRequest({ onClose, onCreate }){
     const [request, setRequest] = useState({
         issueType: 'Принтер',
         priority: 'срочно'
@@ -43,7 +43,10 @@ function CreateNewRequest({ onCreate }){
             <textarea 
                 placeholder="Описание"
                 onChange={(e) => setRequest({...request, description: e.target.value })}/>
-            <button type="submit" color="blue">Создать заявку</button>
+            <div>
+                <button onClick={onClose} type="button">Назад</button>
+                <button type="submit">Создать заявку</button>
+            </div>
         </form>
 
 

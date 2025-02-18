@@ -6,7 +6,7 @@ import AdminRequest from "./request/AdminRequest";
 import { Toggle } from "../../../filters/toggle/Toggle";
 import { fetchRequests } from "../../../../services/RequestServices";
 import { RequestsStructure } from "../../../filters/requestsStructure/RequestsStructure";
-import RequestNotes from "../../../requestNote/RequestNotes";
+import Legacy_RequestNotes from "../../../requestNote/Legacy_RequestNotes";
 import RequestTiles from "../../../requestTile/RequestTiles";
 moment.locale();
 
@@ -79,7 +79,7 @@ function AdminRequestsList(props) {
           </div>
           <div>
             {listType === 1 ? (
-              <RequestNotes
+              <Legacy_RequestNotes
                 requests={requests}
                 onOpenRequest={(requestId) => inputRequestHandler(requestId)}
               />

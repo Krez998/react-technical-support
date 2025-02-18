@@ -1,4 +1,4 @@
-.left-menu {
+/* .left-menu {
     position: absolute;
     width: 350px;
     min-width: 350px;
@@ -7,7 +7,6 @@
 }
 
 .main-window {
-    /* float: right; */
     position: absolute;
     height: 100%;
     overflow-y: hidden;
@@ -24,7 +23,6 @@
     max-height: 100%;
     height: 80px;
     align-content: center;
-    /*margin: 0;*/
     padding: 10px;
 }
 
@@ -47,4 +45,97 @@
 .left-menu button:active {
   background-color: #2a5c84b2;
   border-color: #2a5c84b2;
+} */
+
+.leftside-menu {
+    position: absolute;
+    min-width: 350px;
+    width: 350px;
+    background-color: #f0f3f8a1; 
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: calc(100% - 350px);
+    background-color: #f0f3f8;
+}
+
+.page-title {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #6C757D;
+    text-align: center;
+    height: 40px;
+    margin: 0;
+    padding: 10px;
+    align-content: center;
+    width: calc(100% - 20px);
+}
+
+.content-name {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #6C757D;
+    text-align: center;
+    height: 40px;
+    margin: 0;
+    padding: 10px 0px 10px 20px;
+    text-align: start;
+    align-content: center;
+    width: calc(100% - 20px);
+}
+
+.tilebox {
+   /* flex-grow: 1; /* Позволяет элементам занимать всю доступную высоту */
+    min-width: 200px;
+    min-height: 10px;
+    background-color: white;
+    padding: 10px;
+    margin: 5px 20px 10px 20px;
+    border-radius: 10px;
+    /* width: calc(100% - 20px); */
+}
+
+.tilebox > h3 {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #6C757D;
+    margin: 0;
+}
+
+.tilebox > p {
+    font-size: large;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #6C757D;
+    margin: 0;
+}
+
+.leftside-menu > button:nth-of-type(1) {
+    cursor: pointer;
+    font-size: large;
+    color: white;
+    background-color: #727CF5;
+    border: 0px solid rgb(114, 124, 245);
+    box-shadow: 0 1px 7px rgba(114, 124, 245, 0.5);
+    border-radius: 5px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    margin: 10px 20px 10px 20px;
+    height: 50px;
+}
+
+.leftside-menu > button:nth-of-type(2) {
+    cursor: pointer;
+    font-size: large;
+    color: white;
+    background-color: #0ACF97;
+    border: 0px solid rgb(10, 207, 151);
+    box-shadow: 0 1px 7px rgba(10, 207, 151, 0.5);
+    border-radius: 5px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    margin: 10px 20px 10px 20px;
+    height: 50px;
 }
