@@ -1,6 +1,6 @@
 import "../Page.css";
-import CreateNewRequest from "../../newRequest/CreateNewRequest";
-import { createRequest } from "../../../services/RequestServices";
+import CreateNewTicket from "../../newRequest/CreateNewTicket";
+import { createTicket } from "../../../services/TicketServices";
 import { useState } from "react";
 import UserRequestsList from "./requestList/UserRequestsList";
 import UserRequest from "./requestList/request/UserRequest";
@@ -8,29 +8,32 @@ import UserRequest from "./requestList/request/UserRequest";
 function UserPage(props) {
   const [isRequestListVisible, setRequestListVisible] = useState(true);
   const [isCreateRequestVisible, setCreateRequestFormVisible] = useState(false);
-  const [isRequestVisible, setIsRequestVisible] = useState(false);
+  const [currentRequest, setCurrentRequestData] = useState({
+    id: null,
+    isVisible: false
+  });
 
-  const showRequestList = () => {
+  const showTicketsList = () => {
     setRequestListVisible(true);
     setCreateRequestFormVisible(false);
-    setIsRequestVisible(false);
+    setCurrentRequestData({...currentRequest, isVisible: false});
   };
 
   const showCreateRequestForm = () => {
     setCreateRequestFormVisible(true);
     setRequestListVisible(false);
-    setIsRequestVisible(false);
+    setCurrentRequestData({...currentRequest, isVisible: false});
   };
 
   const showRequestWindow = (requestId) => {
-    setIsRequestVisible(true);
     setRequestListVisible(false);
     setCreateRequestFormVisible(false);
+    setCurrentRequestData({...currentRequest, id: requestId, isVisible: true});
   };
 
-  const createNewRequest = async (request) => {
-    await createRequest(request);
-    showRequestList();
+  const createNewRequest = async (ticket) => {
+    await createTicket(ticket);
+    showTicketsList();
     // можно обновить список заявок здесь, если это необходимо
   };
 
@@ -93,18 +96,19 @@ function UserPage(props) {
         </div>
       )}
       {isCreateRequestVisible && (
-        <CreateNewRequest
-          onClose={showRequestList}
+        <CreateNewTicket
+          onClose={showTicketsList}
           onCreate={createNewRequest}
         />
       )}
-      {isRequestVisible && (
+      {currentRequest.isVisible && (
         <UserRequest
-          onCloseRequest={showRequestList}
+          onCloseRequest={showTicketsList}
           // onSavedChanges={rerenderList}
-          // id={currentRequestId}
+          id={currentRequest.id}
           // title={currentRequest.title}
           // status={currentRequest.status}
+
         />
       )}
     </div>

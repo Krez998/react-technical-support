@@ -8,7 +8,7 @@ function CreateUser({ onCreate }) {
     firstName: null,
     lastName: null,
     patronymic: null,
-    userType: 0,
+    role: 0,
   });
 
   const submit = (e) => {
@@ -51,8 +51,8 @@ function CreateUser({ onCreate }) {
       <label>Роль</label>
       <select
         placeholder="Категория"
-        value={userData.userType}
-        onChange={(e) => setUserData({ ...userData, userType: Number(e.target.value) })}>
+        value={userData.role}
+        onChange={(e) => setUserData({ ...userData, role: Number(e.target.value) })}>
         <option value={0}>Пользователь</option>
         <option value={1}>Исполнитель</option>
         <option value={2}>Администратор</option>

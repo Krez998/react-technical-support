@@ -14,6 +14,7 @@ function Login({ onAuth }) {
           const response = await login(userData);
           if (response.status === 200) {
             onAuth(response.data.user);
+            localStorage.setItem('userId', response.data.user.id);
             localStorage.setItem('token', response.data.token);
           } else {
             setError(response.data);

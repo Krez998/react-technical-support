@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
-import "./AdminRequestsList.css";
+import "./AgentTicketsList.css";
 import moment from "moment";
 import "moment/locale/ru";
-import AdminRequest from "./request/AdminRequest";
+import AgentTicket from "./request/AgentTicket";
 import { Toggle } from "../../../filters/toggle/Toggle";
 import { fetchTickets } from "../../../../services/TicketServices";
 import { TicketsStructure } from "../../../filters/requestsStructure/TicketsStructure";
-import Legacy_TicketNotes from "../../../requestNote/Legacy_RequestNotes";
+import Legacy_RequestNotes from "../../../requestNote/Legacy_RequestNotes";
 import RequestTiles from "../../../requestTile/RequestTiles";
 moment.locale();
 
-function AdminTicketsList(props) {
+function AgentTicketsList(props) {
   const [isTicketVisible, setIsTicketVisible] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [currentTicketId, setCurrentTicketId] = useState(null);
-  const [filter, setFilter] = useState({
+  const [toogleFilter, setToogleFilter] = useState({
     status: 5,
-    isShowNotAssigned: false,
   });
   const [listType, setListType] = useState(1);
   const [isTicketChangesSaved, setIsTicketChangesSaved] = useState(false);
@@ -30,24 +29,19 @@ function AdminTicketsList(props) {
   };
   const hideClosedTickets = (state) => {
     state
-      ? setFilter({ ...filter, status: 5 })
-      : setFilter({ ...filter, status: null });
-  };
-  const showNotAssignedTickets = (state) => {
-    state
-      ? setFilter({ ...filter, isShowNotAssigned: true })
-      : setFilter({ ...filter, isShowNotAssigned: false });
+      ? setToogleFilter({ ...toogleFilter, status: 5 })
+      : setToogleFilter({ ...toogleFilter, status: null });
   };
 
   const fetchData = async () => {
-    let requests = await fetchTickets(filter);
-    setTickets(requests);
+    let tickets = await fetchTickets(toogleFilter);
+    setTickets(tickets);
     setIsTicketChangesSaved(false);
   };
 
   useEffect(() => {
     fetchData();
-  }, [filter, isTicketChangesSaved]);
+  }, [toogleFilter, isTicketChangesSaved]);
 
   const rerenderList = () => {
     setIsTicketChangesSaved(true);
@@ -63,46 +57,41 @@ function AdminTicketsList(props) {
     <div style={dispBlockStyle}>
       {!isTicketVisible && (
         <div>
-          <div className="admin-requests-filter">
+          <div className="executor-tickets-filter">
             {/* <Toggle label="Сначала новые" toggled={true} onClick={logState} /> */}
             <Toggle
               label="Скрыть закрытые"
               toggled={true}
               onClick={hideClosedTickets}
             />
-            <Toggle
-              label="Показать неназначенные"
-              toggled={filter.isShowNotAssigned}
-              onClick={showNotAssignedTickets}
-            />
             <TicketsStructure onSetListType={setListType} />
           </div>
           <div>
             {listType === 1 ? (
-              <Legacy_TicketNotes
-                requests={tickets}
-                onOpenRequest={(requestId) => inputTicketHandler(requestId)}
+              <Legacy_RequestNotes
+                tickets={tickets}
+                onOpenTicket={(ticketId) => inputTicketHandler(ticketId)}
               />
             ) : (
               <RequestTiles
-                requests={tickets}
-                onOpenRequest={(requestId) => inputTicketHandler(requestId)}
+                tickets={tickets}
+                onOpenTicket={(ticketId) => inputTicketHandler(ticketId)}
               />
             )}
           </div>
         </div>
       )}
       {isTicketVisible && (
-        <AdminRequest
+        <AgentTicket
           onCloseRequest={cancelTicketHandler}
           onSavedChanges={rerenderList}
           id={currentTicketId}
-          // title={currentRequest.title}
-          // status={currentRequest.status}
+          // title={currentTicketId.title}
+          // status={currentTicketId.status}
         />
       )}
     </div>
   );
 }
 
-export default AdminTicketsList;
+export default AgentTicketsList;

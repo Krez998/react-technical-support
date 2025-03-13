@@ -1,6 +1,6 @@
 import "./Legacy_RequestNotes.css";
 
-function Legacy_RequestNotes(props) {
+function Legacy_TicketNotes(props) {
   const getStatusStyle = (status) => {
     let backgroundColor;
     switch (status) {
@@ -63,4 +63,4 @@ function Legacy_RequestNotes(props) {
   );
 }
 
-export default Legacy_RequestNotes;
+export default Legacy_TicketNotes;

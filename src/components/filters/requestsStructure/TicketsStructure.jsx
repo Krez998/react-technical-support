@@ -1,11 +1,11 @@
-import "./RequestsStructure.css";
+import "./TicketsStructure.css";
 import tableImg from "../../../resources/requestsFilter/table_btn.png";
 import tilesImg from "../../../resources/requestsFilter/tiles_btn.png";
 
-export const RequestsStructure = ({ onSetListType }) => {
+export const TicketsStructure = ({ onSetListType }) => {
 
   return (
-    <div class="requests-structure-container">
+    <div class="tickets-structure-container">
       <button type="button" onClick={() => onSetListType(1)}>
         <img src={tableImg} alt="Таблица" />
       </button>

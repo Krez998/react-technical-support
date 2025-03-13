@@ -1,4 +1,4 @@
-.request {
+.ticket {
     align-self: start;
     display: flex;
     background-color: whitesmoke;
@@ -12,7 +12,7 @@
     padding: 20px;   
 }
 
-.request label {
+.ticket label {
     font-size: large;  
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     font-weight: bold;
@@ -21,7 +21,7 @@
     max-width: 100%;
 }
 
-.request input {
+.ticket input {
     font: inherit;
     padding: 0.5rem;
     border-radius: 5px;
@@ -29,7 +29,7 @@
     max-width: 100%;  
 }
 
-.request select {
+.ticket select {
     font: inherit;
     padding: 0.5rem;
     border-radius: 5px;
@@ -37,7 +37,7 @@
     max-width: 100%;
 }
 
-.request > div > button:nth-child(1) {
+.ticket > div > button:nth-child(1) {
     font: inherit;
     cursor: pointer;
     border: 1px solid white;
@@ -50,7 +50,7 @@
     max-width: 100%;
 }
 
-.request > div > button:nth-child(2) {
+.ticket > div > button:nth-child(2) {
     font: inherit;
     cursor: pointer;
     border: 1px solid white;
@@ -63,7 +63,7 @@
     max-width: 100%;
 }
 
-.request > div > button:nth-child(3) {
+.ticket > div > button:nth-child(3) {
     font: inherit;
     cursor: pointer;
     border: 1px solid white;
@@ -76,8 +76,8 @@
     max-width: 100%;
 }
 
-.request > div > button:hover,
-.request > div > button:active {
+.ticket > div > button:hover,
+.ticket > div > button:active {
   /*background-color: #ff3939;*/
   color: rgb(0, 0, 0);
 }

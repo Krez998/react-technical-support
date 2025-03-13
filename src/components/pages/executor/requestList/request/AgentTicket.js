@@ -1,35 +1,35 @@
 import { useEffect, useState } from "react";
-import "./ExecutorRequest.css";
+import "./AgentTicket.css";
 import {
-  changeRequestStatus,
-  fetchRequest,
-} from "../../../../../services/RequestServices";
+  changeTicketStatus,
+  fetchTicket,
+} from "../../../../../services/TicketServices";
 
-const ExecutorRequest = (props) => {
+const AgentTicket = (props) => {
   const [isSaveButtonVisible, setSaveButtonVisible] = useState(false);
-  const [requestData, setRequestData] = useState({
+  const [ticketData, setTicketData] = useState({
     id: props.id,
     title: "",
-    executorFullName: "",
-    executorId: null,
+    agentFullName: "",
+    agentId: null,
     status: null,
   });
 
-  const [resuestStatusData, setStatus] = useState({
+  const [ticketStatusData, setStatus] = useState({
     id: props.id,
     status: null,
   });
 
   const fetchData = async () => {
-    let response = await fetchRequest(requestData.id);
-    setRequestData({
-      ...requestData,
+    let response = await fetchTicket(ticketData.id);
+    setTicketData({
+      ...ticketData,
       title: response.title,
-      executorFullName: response.executorFullName,
-      executorId: response.executorId,
+      agentFullName: response.agentFullName,
+      agentId: response.agentId,
       status: response.status,
     });
-    setStatus({ ...resuestStatusData, status: response.status });
+    setStatus({ ...ticketStatusData, status: response.status });
   };
 
   useEffect(() => {
@@ -38,16 +38,16 @@ const ExecutorRequest = (props) => {
 
   useEffect(() => {
     setSaveButtonVisible(
-      requestData.status !== resuestStatusData.status
+      ticketData.status !== ticketStatusData.status
     );
-  }, [resuestStatusData, requestData.status]);
+  }, [ticketStatusData, ticketData.status]);
 
   const patchData = async () => {
-    if (requestData.status !== resuestStatusData.status) {
-      let response = await changeRequestStatus(resuestStatusData);
+    if (ticketData.status !== ticketStatusData.status) {
+      let response = await changeTicketStatus(ticketStatusData);
       if (response.status === 200) {
-        setRequestData({ ...requestData, status: response.data.status });
-        setStatus({ ...resuestStatusData, status: response.data.status });
+        setTicketData({ ...ticketData, status: response.data.status });
+        setStatus({ ...ticketStatusData, status: response.data.status });
       }
     }
 
@@ -58,20 +58,20 @@ const ExecutorRequest = (props) => {
   return (
     <div>
       {
-        <div className="request">
+        <div className="ticket">
           <h1>Заявка</h1>
           <label>Номер заявки</label>
-          <input readOnly value={requestData.id}></input>
+          <input readOnly value={ticketData.id}></input>
           <label>Исполнитель</label>
-          <input readOnly value={requestData.executorFullName}></input>
+          <input readOnly value={ticketData.agentFullName}></input>
           <label>Заголовок</label>
-          <input readOnly value={requestData.title}></input>
+          <input readOnly value={ticketData.title}></input>
           <label>Статус</label>
           <select
-            value={resuestStatusData.status}
+            value={ticketStatusData.status}
             onChange={(e) =>
               setStatus({
-                ...resuestStatusData,
+                ...ticketStatusData,
                 status: Number(e.target.value),
               })
             }
@@ -101,4 +101,4 @@ const ExecutorRequest = (props) => {
   );
 };
 
-export default ExecutorRequest;
+export default AgentTicket;

@@ -4,7 +4,7 @@ export const fetchExecutors = async () => {
   try {
     const token = localStorage.getItem("token");
     var response = await axios.get(
-      "https://localhost:7257/api/User/allExecutors",
+      "https://localhost:7257/api/User/allAgents",
       {
         headers: {
           Authorization: `Bearer ${token}`,

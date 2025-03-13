@@ -1,28 +1,28 @@
 import { useState, useEffect } from "react";
 import "./UserRequestsList.css";
 import { Toggle } from "../../../filters/toggle/Toggle";
-import { fetchRequests } from "../../../../services/RequestServices";
-import { RequestsStructure } from "../../../filters/requestsStructure/RequestsStructure";
+import { fetchTickets } from "../../../../services/TicketServices";
+import { TicketsStructure } from "../../../filters/requestsStructure/TicketsStructure";
 import RequestTiles from "../../../requestTile/RequestTiles";
 import RequestNotes from "../../../requestNote/RequestNotes";
-import UserRequest from "./request/UserRequest";
+//import UserRequest from "./request/UserRequest";
 
-function UserRequestsList(props) {
-  const [isRequestVisible, setIsRequestVisible] = useState(false);
-  const [requests, setRequests] = useState([]);
-  const [currentRequestId, setCurrentRequestId] = useState(null);
+function UserTicketsList(props) {
+  const [isTicketVisible, setIsTicketVisible] = useState(false);
+  const [tickets, setTickets] = useState([]);
+  //const [currentTicketId, setCurrentTicketId] = useState(null);
   const [filter, setFilter] = useState({
     status: 5,
   });
   const [listType, setListType] = useState(1);
-  const [isRequestChangesSaved, setIsRequestChangesSaved] = useState(false);
+  const [isTicketChangesSaved, setIsTicketChangesSaved] = useState(false);
 
-  // const inputRequestHandler = (requestId) => {
-  //   setCurrentRequestId(requestId);
-  //   setIsRequestVisible(true);
+  // const inputTicketHandler = (ticketId) => {
+  //   setCurrentTicketId(ticketId);
+  //   setIsTicketVisible(true);
   // };
-  // const cancelRequestHandler = () => {
-  //   setIsRequestVisible(false);
+  // const cancelTicketHandler = () => {
+  //   setIsTicketVisible(false);
   // };
   const hideClosedRequests = (state) => {
     state
@@ -31,17 +31,17 @@ function UserRequestsList(props) {
   };
 
   const fetchData = async () => {
-    let requests = await fetchRequests(filter);
-    setRequests(requests);
-    setIsRequestChangesSaved(false);
+    let requests = await fetchTickets(filter);
+    setTickets(requests);
+    setIsTicketChangesSaved(false);
   };
 
   useEffect(() => {
     fetchData();
-  }, [filter, isRequestChangesSaved]);
+  }, [filter, isTicketChangesSaved]);
 
   const rerenderList = () => {
-    setIsRequestChangesSaved(true);
+    setIsTicketChangesSaved(true);
   };
 
   let dispBlockStyle = {
@@ -52,7 +52,7 @@ function UserRequestsList(props) {
 
   return (
     <div style={dispBlockStyle}>
-      {!isRequestVisible && (
+      {!isTicketVisible && (
         <div>
           <div className="user-requests-filter">
             {/* <Toggle label="Сначала новые" toggled={true} onClick={logState} /> */}
@@ -66,18 +66,18 @@ function UserRequestsList(props) {
               toggled={filter.isShowNotAssigned}
               onClick={showNotAssignedRequests}
             /> */}
-            <RequestsStructure onSetListType={setListType} />
+            <TicketsStructure onSetListType={setListType} />
           </div>
           <div>
             {listType === 1 ? (
               <RequestNotes
-                requests={requests}
+                requests={tickets}
                 onOpenRequest={props.openRequest}
                 // onOpenRequest={(requestId) => inputRequestHandler(requestId)}
               />
             ) : (
               <RequestTiles
-                requests={requests}
+                requests={tickets}
                 onOpenRequest={props.openRequest}
                 //onOpenRequest={(requestId) => inputRequestHandler(requestId)}
               />
@@ -98,4 +98,4 @@ function UserRequestsList(props) {
   );
 }
 
-export default UserRequestsList;
+export default UserTicketsList;

@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import "./AdminRequest.css";
 import {
-  changeRequestStatus,
-  changeRequestExecutor,
-  fetchRequest,
-} from "../../../../../services/RequestServices";
+  changeTicketStatus,
+  changeTicketAgent,
+  fetchTicket,
+} from "../../../../../services/TicketServices";
 import AdminExecutorsList from "./executorsList/AdminExecutorsList";
 
 const UserRequest = (props) => {
   const [isSaveButtonVisible, setSaveButtonVisible] = useState(false);
-  const [isExecutorsListVisible, setExecutorsListVisible] = useState(false);
+  const [isAgentsListVisible, setAgentsListVisible] = useState(false);
 
-  const [requestData, setRequestData] = useState({
+  const [ticketData, setTicketData] = useState({
     id: props.id,
     title: "",
     executorFullName: "",
-    executorId: null,
+    agentId: null,
     status: null,
   });
 
@@ -24,23 +24,23 @@ const UserRequest = (props) => {
     status: null,
   });
 
-  const [requestExecutorData, setExecutor] = useState({
+  const [ticketAgentData, setAgent] = useState({
     id: props.id,
-    executorId: null,
+    agentId: null,
     executorFullName: null,
   });
 
   const fetchData = async () => {
-    let response = await fetchRequest(requestData.id);
-    setRequestData({
-      ...requestData,
+    let response = await fetchTicket(ticketData.id);
+    setTicketData({
+      ...ticketData,
       title: response.title,
       executorFullName: response.executorFullName,
-      executorId: response.executorId,
+      agentId: response.executorId,
       status: response.status,
     });
     setStatus({ ...resuestStatusData, status: response.status });
-    setExecutor({ ...requestExecutorData, executorId: response.executorId, executorFullName: response.executorFullName });
+    setAgent({ ...ticketAgentData, agentId: response.executorId, executorFullName: response.executorFullName });
   };
 
   useEffect(() => {
@@ -49,41 +49,41 @@ const UserRequest = (props) => {
 
   useEffect(() => {
     setSaveButtonVisible(
-      requestData.status !== resuestStatusData.status ||
-        requestData.executorId !== requestExecutorData.executorId
+      ticketData.status !== resuestStatusData.status ||
+        ticketData.agentId !== ticketAgentData.agentId
     );
-  }, [resuestStatusData, requestExecutorData, requestData.status]);
+  }, [resuestStatusData, ticketAgentData, ticketData.status]);
 
   const hideExecutorsListHandler = () => {
-    setExecutorsListVisible(false);
+    setAgentsListVisible(false);
   };
 
-  const showExecutorsListHandler = () => {
-    setExecutorsListVisible(true);
+  const showAgentsListHandler = () => {
+    setAgentsListVisible(true);
   };
 
-  let changeExecutorButtonDescription;
-  if (requestData.executorFullName === null) {
-    changeExecutorButtonDescription = "Назначить исполнителя";
-  } else changeExecutorButtonDescription = "Сменить исполнителя";
+  let changeAgentButtonDescription;
+  if (ticketData.executorFullName === null) {
+    changeAgentButtonDescription = "Назначить исполнителя";
+  } else changeAgentButtonDescription = "Сменить исполнителя";
 
   const patchData = async () => {
 
-    if (requestData.status !== resuestStatusData.status) {
-      let response = await changeRequestStatus(resuestStatusData);
+    if (ticketData.status !== resuestStatusData.status) {
+      let response = await changeTicketStatus(resuestStatusData);
       if (response.status === 200) {
-        setRequestData({ ...requestData, status: response.data.status });
+        setTicketData({ ...ticketData, status: response.data.status });
         setStatus({ ...resuestStatusData, status: response.data.status });
       }
     }
 
-    if (requestData.executorId !== requestExecutorData.executorId) {
-      let response = await changeRequestExecutor(requestExecutorData);
+    if (ticketData.agentId !== ticketAgentData.agentId) {
+      let response = await changeTicketAgent(ticketAgentData);
       if (response.status === 200) {
-        setRequestData({ ...requestData, status: response.data.status });
-        setExecutor({
-          ...requestExecutorData,
-          executorId: response.data.executorId,
+        setTicketData({ ...ticketData, status: response.data.status });
+        setAgent({
+          ...ticketAgentData,
+          agentId: response.data.executorId,
         });
       }
     }
@@ -92,22 +92,22 @@ const UserRequest = (props) => {
     props.onSavedChanges();
   };
 
-  const chooseExecutorHandler = (id, fullName) => {
-    setExecutorsListVisible(false);
-    setExecutor({ ...requestExecutorData, executorId: id, executorFullName: fullName });
+  const chooseAgentsHandler = (id, fullName) => {
+    setAgentsListVisible(false);
+    setAgent({ ...ticketAgentData, agentId: id, executorFullName: fullName });
   };
 
   return (
     <div>
-      {!isExecutorsListVisible && (
+      {!isAgentsListVisible && (
         <div className="request">
           <h1>Заявка</h1>
           <label>Номер заявки</label>
-          <input readOnly value={requestData.id}></input>
+          <input readOnly value={ticketData.id}></input>
           <label>Исполнитель</label>
-          <input readOnly value={requestExecutorData.executorFullName}></input>
+          <input readOnly value={ticketAgentData.executorFullName}></input>
           <label>Заголовок</label>
-          <input readOnly value={requestData.title}></input>
+          <input readOnly value={ticketData.title}></input>
           <label>Статус</label>
           <select
             value={resuestStatusData.status}
@@ -131,8 +131,8 @@ const UserRequest = (props) => {
             <button type="button" onClick={props.onCloseRequest}>
               Назад
             </button>
-            <button type="button" onClick={showExecutorsListHandler}>
-              {changeExecutorButtonDescription}
+            <button type="button" onClick={showAgentsListHandler}>
+              {changeAgentButtonDescription}
             </button>
             {isSaveButtonVisible && (
               <button type="button" onClick={patchData}>
@@ -142,9 +142,9 @@ const UserRequest = (props) => {
           </div>
         </div>
       )}
-      {isExecutorsListVisible && (
+      {isAgentsListVisible && (
         <AdminExecutorsList
-          onChooseExecutor={chooseExecutorHandler}
+          onChooseExecutor={chooseAgentsHandler}
           onCloseExecutorsList={hideExecutorsListHandler}
         />
       )}

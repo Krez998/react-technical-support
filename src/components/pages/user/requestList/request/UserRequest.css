@@ -16,8 +16,9 @@
     background-color: whitesmoke;
     position: absolute;
     width: 60%;
-    height: 100%;
-    padding: 20px;
+    height: 90%;
+    padding: 20px 20px 0px 20px;
+    border-radius: 10px;
 }
 
 .request-content-return-btn {
@@ -30,20 +31,87 @@
 }
 
 .request-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     height: 150px;
     border: 2px solid #727CF5;
     border-radius: 10px;
     margin-top: 10px;
 }
 
+.request-info-first-row {
+    /* overflow: hidden; */
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.request-info-first-row h1 {
+    width: 200px;
+    margin: 0;
+    /* padding: 0px 10px 0px 20px;
+    margin-top: 5px;
+    margin-bottom: 0px; */
+}
+
+.request-info-first-row div {
+    /* margin-top: 5px; */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.request-info-first-row div > p {
+    margin: 0;
+    /*
+    padding: 0px 10px 0px 10px; */
+    font-size: medium;
+    width: 100%; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.request-info-first-row div:nth-of-type(1) {
+    margin-right: 20px;
+}
+
+.request-info-second-row > p {
+    margin: 10px 10px 10px 10px;
+}
+
 .request-chat {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
     background-color: white;
     height: calc(100% - 350px);
     min-height: 200px;
     margin-top: 10px;
-    border: 2px solid #f57272;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* border: 2px solid #f57272; */
     border-radius: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
+}
+
+.request-self-message {
+    border-radius: 10px;
+    border: 2px solid #727CF5;
+    background-color: #cbcfff;
+    padding: 8px;
+    max-width: 500px;
+    align-self: flex-end;
+}
+
+.request-other-message {
+    border-radius: 10px;
+    border: 2px solid #727CF5;
+    padding: 8px;
+    max-width: 500px;
+    align-self: flex-start;
 }
 
 .message-input-container {
@@ -60,7 +128,7 @@
     border: 2px solid #8391A2;
     border-radius: 5px;
     width: 100%;
-    height: 40px;
+    height: 30px;
     margin-right: 15px;
 }
 
@@ -73,6 +141,9 @@
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     width: 100px;
-    height: 30px;
-    
+    height: 35px;
+}
+
+.message-input-container button:nth-of-type(1):hover {
+    background-color: #09bf8c;
 }

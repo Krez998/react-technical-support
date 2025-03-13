@@ -1,0 +1,15 @@
+
+.executor-tickets-filter {
+  margin: 1rem 1rem 0rem 1rem;
+  padding: 0rem;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
+  height: 50px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline-start: 10px;
+}
+

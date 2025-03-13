@@ -1,19 +1,19 @@
 import "../Page.css";
 import { useState } from "react";
-import ExecutorRequestsList from "../executor/requestList/ExecutorRequestsList";
-import ExecutorRequest from "./requestList/request/ExecutorRequest";
+import AgentTicketsList from "../executor/requestList/AgentTicketsList";
+import AgentTicket from "./requestList/request/AgentTicket";
 
 function ExecutorPage(props) {
-  const [isRequestListVisible, setRequestListVisible] = useState(true);
-  const [isRequestVisible, setIsRequestVisible] = useState(false);
+  const [isTicketListVisible, setTicketListVisible] = useState(true);
+  const [isTicketVisible, setIsTicketVisible] = useState(false);
 
-  const showRequestList = () => {
-    setRequestListVisible(true);
+  const showTicketList = () => {
+    setTicketListVisible(true);
   };
 
-  const showRequestWindow = (requestId) => {
-    setIsRequestVisible(true);
-    setRequestListVisible(false);
+  const showTicketWindow = (ticketId) => {
+    setIsTicketVisible(true);
+    setTicketListVisible(false);
   };
 
   return (
@@ -34,7 +34,7 @@ function ExecutorPage(props) {
     //   )}
     // </section>
     <div>
-      {isRequestListVisible && (
+      {isTicketListVisible && (
         <div>
           <div className="leftside-menu">
             <h2 className="page-title">Личный кабинет</h2>
@@ -59,17 +59,17 @@ function ExecutorPage(props) {
               <h2 className="content-name">Мои заявки</h2>
             </header>
             <body>
-              <ExecutorRequestsList
-                openRequest={showRequestWindow}
-                onCloseRequest={() => setRequestListVisible(true)}
+              <AgentTicketsList
+                openRequest={showTicketWindow}
+                onCloseRequest={() => setTicketListVisible(true)}
               />
             </body>
           </div>
         </div>
       )}
-      {isRequestVisible && (
-        <ExecutorRequest
-          onCloseRequest={showRequestList}
+      {isTicketVisible && (
+        <AgentTicket
+          onCloseRequest={showTicketList}
         />
       )}
     </div>

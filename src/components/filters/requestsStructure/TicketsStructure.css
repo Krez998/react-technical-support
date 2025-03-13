@@ -1,10 +1,10 @@
-.requests-structure-container {
+.tickets-structure-container {
     display: flex;
     gap: 5px;
     padding-right: 5px;
 }
 
-.requests-structure-container button {
+.tickets-structure-container button {
     border: none;
     padding: 5px;
     border-radius: 5px;
@@ -14,12 +14,12 @@
     transition: filter 0.3s ease;
 }
 
-.requests-structure-container button img {
+.tickets-structure-container button img {
     width: 30px;
     height: 30px;
 }
 
-.requests-structure-container button:hover {
+.tickets-structure-container button:hover {
     /* background-color: rgb(255, 255, 255); */
     filter: sepia(1) saturate(10) hue-rotate(210deg);
 }

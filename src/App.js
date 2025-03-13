@@ -1,8 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { fetchRequests, createRequest } from "./services/RequestServices";
-import Background from "./components/background/Background";
 import BackgroundContainer from "./components/background/BackgroundContainer";
-import CreateNewRequest from "./components/newRequest/CreateNewRequest";
 import Login from "./components/login/login";
 import UserPage from "./components/pages/user/UserPage"
 import ExecutorPage from "./components/pages/executor/ExecutorPage";

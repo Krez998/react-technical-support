@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const fetchRequests = async (filter) => {
+export const fetchTickets = async (filter) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.get(
-      "https://localhost:7257/api/Request", {
+      "https://localhost:7257/api/Ticket", {
         params: {
           status: filter?.status,
           isShowNotAssigned: filter?.isShowNotAssigned,
@@ -20,11 +20,11 @@ export const fetchRequests = async (filter) => {
   }
 };
 
-export const fetchRequest = async (id) => {
+export const fetchTicket = async (id) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.get(
-      `https://localhost:7257/api/Request/${id}`,
+      `https://localhost:7257/api/Ticket/${id}`,
       {
         headers: {
           authorization: `Bearer ${token}`,
@@ -37,12 +37,12 @@ export const fetchRequest = async (id) => {
   }
 };
 
-export const createRequest = async (request) => {
+export const createTicket = async (ticket) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.post(
-      "https://localhost:7257/api/Request",
-      request,
+      "https://localhost:7257/api/Ticket",
+      ticket,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -55,11 +55,11 @@ export const createRequest = async (request) => {
   }
 };
 
-export const changeRequestStatus = async (data) => {
+export const changeTicketStatus = async (data) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.patch(
-      `https://localhost:7257/api/Request/setStatus/${data.id}?status=${data.status}`,
+      `https://localhost:7257/api/Ticket/setStatus/${data.id}?status=${data.status}`,
       null,
       {
         headers: {
@@ -73,12 +73,30 @@ export const changeRequestStatus = async (data) => {
   }
 };
 
-export const changeRequestExecutor = async (data) => {
+export const changeTicketAgent = async (data) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.patch(
-      `https://localhost:7257/api/Request/setExecutor/${data.id}?executorId=${data.executorId}`,
+      `https://localhost:7257/api/Ticket/setAgent/${data.id}?agentId=${data.executorId}`,
       null,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const createMessage = async (data) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      "https://localhost:7257/api/Ticket/sendMessage", 
+      data,
       {
         headers: {
           Authorization: `Bearer ${token}`,
