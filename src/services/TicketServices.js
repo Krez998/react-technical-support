@@ -1,47 +1,10 @@
 import axios from "axios";
 
-export const fetchTickets = async (filter) => {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await axios.get(
-      "https://localhost:7257/api/Ticket", {
-        params: {
-          status: filter?.status,
-          isShowNotAssigned: filter?.isShowNotAssigned,
-        },
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return response.data;
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-export const fetchTicket = async (id) => {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await axios.get(
-      `https://localhost:7257/api/Ticket/${id}`,
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return response.data;
-  } catch (e) {
-    console.error(e);
-  }
-};
-
 export const createTicket = async (ticket) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.post(
-      "https://localhost:7257/api/Ticket",
+      "https://localhost:7257/api/Tickets",
       ticket,
       {
         headers: {
@@ -55,11 +18,46 @@ export const createTicket = async (ticket) => {
   }
 };
 
+export const fetchTicket = async (id) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(
+      `https://localhost:7257/api/Tickets/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const fetchTickets = async (filter) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get("https://localhost:7257/api/Tickets", {
+      params: {
+        status: filter?.status,
+        isShowNotAssigned: filter?.isShowNotAssigned,
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export const changeTicketStatus = async (data) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.patch(
-      `https://localhost:7257/api/Ticket/setStatus/${data.id}?status=${data.status}`,
+      `https://localhost:7257/api/Tickets/setStatus/${data.id}?status=${data.status}`,
       null,
       {
         headers: {
@@ -77,7 +75,7 @@ export const changeTicketAgent = async (data) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.patch(
-      `https://localhost:7257/api/Ticket/setAgent/${data.id}?agentId=${data.executorId}`,
+      `https://localhost:7257/api/Tickets/setAgent/${data.id}?agentId=${data.executorId}`,
       null,
       {
         headers: {
@@ -91,11 +89,11 @@ export const changeTicketAgent = async (data) => {
   }
 };
 
-export const createMessage = async (data) => {
+export const sendMessage = async (data) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.post(
-      "https://localhost:7257/api/Ticket/sendMessage", 
+      "https://localhost:7257/api/Messages/send",
       data,
       {
         headers: {

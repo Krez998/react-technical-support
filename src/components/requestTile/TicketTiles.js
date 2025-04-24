@@ -1,6 +1,6 @@
-import "./RequestTiles.css";
+import "./TicketTiles.css";
 
-function RequestTiles(props) {
+function TicketTiles(props) {
   const getStatusInfo = (status) => {
     let info = null;
     switch (status) {
@@ -35,21 +35,21 @@ function RequestTiles(props) {
   return (
     <div className="container">
       <div className="grid">
-        {props.requests.map((request) => (
+        {props.tickets.map((ticket) => (
           <div
             className="tile"
-            key={request.id}
-            onClick={() => props.onOpenRequest(request.id)}
+            key={ticket.id}
+            onClick={() => props.onOpenTicket(ticket.id)}
           >
-            {request.unreadMessages > 0 && (
+            {ticket.unreadMessages > 0 && (
               <div className="tile-unread-messages">
-                {request.unreadMessages}
+                {ticket.unreadMessages}
               </div>
             )}
-            <h1 className="tile-id">{request.id}</h1>
-            <h4 className="tile-title">{request.title}</h4>
-            <strong>Статус: {getStatusInfo(request.status)}</strong>
-            <p className="tile-description">{request.description}</p>
+            <h1 className="tile-id">{ticket.id}</h1>
+            <h4 className="tile-title">{ticket.title}</h4>
+            <strong>Статус: {getStatusInfo(ticket.status)}</strong>
+            <p className="tile-description">{ticket.description}</p>
           </div>
         ))}
       </div>
@@ -57,4 +57,4 @@ function RequestTiles(props) {
   );
 }
 
-export default RequestTiles;
+export default TicketTiles;

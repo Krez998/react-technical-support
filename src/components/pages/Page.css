@@ -123,7 +123,7 @@
     box-shadow: 0 1px 7px rgba(114, 124, 245, 0.5);
     border-radius: 5px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    margin: 10px 20px 10px 20px;
+    margin: 10px 20px 0px 20px;
     height: 50px;
 }
 
@@ -136,7 +136,33 @@
     box-shadow: 0 1px 7px rgba(10, 207, 151, 0.5);
     border-radius: 5px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    margin: 10px 20px 10px 20px;
+    margin: 10px 20px 0px 20px;
+    height: 50px;
+}
+
+.leftside-menu > button:nth-of-type(3) {
+    cursor: pointer;
+    font-size: large;
+    color: white;
+    background-color: #fa5c7c;   
+    border: 0px solid rgb(255, 69, 106);
+    box-shadow: 0 1px 7px rgb(255, 33, 77);
+    border-radius: 5px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    margin: 10px 20px 0px 20px;
+    height: 50px;
+}
+
+.leftside-menu > button:nth-of-type(4) {
+    cursor: pointer;
+    font-size: large;
+    color: #313a46;
+    background-color: #dce0e4;
+    border: 0px solid #dce0e4;
+    box-shadow: 0 1px 7px #dce0e4;
+    border-radius: 5px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    margin: 10px 20px 0px 20px;
     height: 50px;
 }
 
@@ -146,4 +172,12 @@
 
 .leftside-menu > button:nth-of-type(2):hover {
     background-color: #09bf8c;
+}
+
+.leftside-menu > button:nth-of-type(3):hover {
+    background-color: #e75573;
+}
+
+.leftside-menu > button:nth-of-type(4):hover {
+    background-color: #eef2f7;
 }

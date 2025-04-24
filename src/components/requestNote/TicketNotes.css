@@ -1,4 +1,4 @@
-.request-notes {
+.ticket-notes {
     background-color: transparent;
     height: 100%;
     max-width: 100%;
@@ -7,7 +7,7 @@
     /* border: 1px solid pink; */
 }
 
-.request-note {
+.ticket-note {
     position: relative;
     display: flex;
     padding-left: 10px;
@@ -20,7 +20,7 @@
     cursor: pointer;  
 }
 
-.request-note-first-column {
+.ticket-note-first-column {
     /* display: flex; */
     overflow: hidden;
     justify-content: flex-start;
@@ -28,13 +28,13 @@
     width: 500px;
     min-width: 100px;
 }
-.request-note-first-column > h2:nth-child(1) { 
+.ticket-note-first-column > h2:nth-child(1) { 
     text-align: left;
     width: 100%;
     border-radius: 10px;
     margin: 0px 0px 10px 0px;
 }
-.request-note-first-column > p:nth-child(2) {
+.ticket-note-first-column > p:nth-child(2) {
     font-size:medium;  
     font-weight:normal;
     text-align: left;
@@ -45,19 +45,19 @@
     text-overflow: ellipsis;
 }
 
-.request-note-second-column {
+.ticket-note-second-column {
     /* display: flex; */
     overflow: hidden;
     justify-content: flex-end;
     width: calc(100% - 500px); 
 }
 
-.request-note-second-column > p {
+.ticket-note-second-column > p {
     text-align: end;
     margin: 0;   
 }
 
-.request-note-unread-messages {
+.ticket-note-unread-messages {
     display: flex;
     justify-content: center;
     align-items: center;

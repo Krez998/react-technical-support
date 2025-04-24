@@ -1,14 +1,14 @@
 .new-user-form {
-    align-self: start;
-    width: 100%;
+    min-width: 450px;
+    align-self: start;   
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 1rem;
+    /* gap: 1rem; */
+    text-align: center;
     padding: 1rem;
     margin: 2rem;
     border-radius: 10px;
-    text-align: center;
     box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
 }
 
@@ -18,6 +18,8 @@
     font-weight: bold;
     text-align: left;
     border-radius: 5px;
+    margin-left: 2px;
+    margin-bottom: 5px;
     max-width: 100%;
 }
 
@@ -26,6 +28,7 @@
     padding: 0.5rem;
     border-radius: 5px;
     border: 1px solid #ccc;
+    margin-bottom: 10px;
     max-width: 100%;
 }
 
@@ -34,6 +37,7 @@
     padding: 0.5rem;
     border-radius: 5px;
     border: 1px solid #ccc;
+    margin-bottom: 20px;
     max-width: 100%;
 }
 
@@ -45,18 +49,34 @@
     max-width: 100%;
 }
 
-.new-user-form button {
+.new-user-form button:nth-of-type(1) {
     font: inherit;
     cursor: pointer;
+    float: left;
+    border: 1px solid #2a5b84;
+    background-color: #555555;
+    color: #fefae1;
+    border-radius: 10px;
+    margin-right: 3px;
+    width: 200px;
+    height: 50px;
+    max-width: 100%;
+}
+
+.new-user-form button:nth-of-type(2) {
+    font: inherit;
+    cursor: pointer;
+    float: right;
     border: 1px solid #2a5b84;
     background-color: #2a842a;
     color: #fefae1;
     border-radius: 10px;
     margin-right: 3px;
-    width: 400px;
+    width: 200px;
     height: 50px;
     max-width: 100%;
 }
+
 
 .new-user-form button:hover,
 .new-user-form button:active {

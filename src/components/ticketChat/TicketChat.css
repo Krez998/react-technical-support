@@ -1,4 +1,4 @@
-.request-background {
+.ticket-chat-background {
     background-color: #8391A2;
     /* background-color: #6C757D; */
     /* background-color: #727CF5; */
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.request-content {
+.ticket-chat-content {
     background-color: whitesmoke;
     position: absolute;
     width: 60%;
@@ -21,7 +21,7 @@
     border-radius: 10px;
 }
 
-.request-content-return-btn {
+.ticket-chat-content-return-btn {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: large;
     color: #727CF5;
@@ -30,7 +30,7 @@
     cursor: pointer;
 }
 
-.request-info {
+.ticket-chat-info {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -40,14 +40,14 @@
     margin-top: 10px;
 }
 
-.request-info-first-row {
+.ticket-chat-info-first-row {
     /* overflow: hidden; */
     display: flex;
     flex-direction: row;
     padding: 10px;
 }
 
-.request-info-first-row h1 {
+.ticket-chat-info-first-row h1 {
     width: 200px;
     margin: 0;
     /* padding: 0px 10px 0px 20px;
@@ -55,14 +55,14 @@
     margin-bottom: 0px; */
 }
 
-.request-info-first-row div {
+.ticket-chat-info-first-row div {
     /* margin-top: 5px; */
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
-.request-info-first-row div > p {
+.ticket-chat-info-first-row div > p {
     margin: 0;
     /*
     padding: 0px 10px 0px 10px; */
@@ -73,15 +73,15 @@
     text-overflow: ellipsis;
 }
 
-.request-info-first-row div:nth-of-type(1) {
+.ticket-chat-info-first-row div:nth-of-type(1) {
     margin-right: 20px;
 }
 
-.request-info-second-row > p {
+.ticket-chat-info-second-row > p {
     margin: 10px 10px 10px 10px;
 }
 
-.request-chat {
+.request-chat-message-container {
     list-style: none;
     display: flex;
     gap: 10px;
@@ -97,7 +97,7 @@
     overflow-y: auto;
 }
 
-.request-self-message {
+.ticket-chat-self-message {
     border-radius: 10px;
     border: 2px solid #727CF5;
     background-color: #cbcfff;
@@ -106,7 +106,7 @@
     align-self: flex-end;
 }
 
-.request-other-message {
+.ticket-chat-other-message {
     border-radius: 10px;
     border: 2px solid #727CF5;
     padding: 8px;

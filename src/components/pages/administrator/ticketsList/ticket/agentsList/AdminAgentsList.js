@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
-import "../executorsList/AdminExecutorsList.css";
+import "./AdminAgentsList.css";
 import { fetchExecutors } from "../../../../../../services/UserServices";
-import ExecutorNote from "./executorNote/ExecutorNote";
+import AgentNote from "./agentNote/AgentNote";
 
-const AdminExecutorsList = (props) => {
+const AdminAgentsList = (props) => {
   //const [selectedExecutorId, setSelectedExecutorId] = useState(null);
   const [selectedExecutorData, setSelectedExecutorData] = useState({
     id: null,
@@ -47,7 +47,7 @@ const AdminExecutorsList = (props) => {
       <ul className="executors-list">
         {executors.map((e, index) => (
           <li key={e.id}>
-            <ExecutorNote
+            <AgentNote
               onChooseExecutor={selectExecutorHandler}
               user={e}
               ref={(el) => (executorRefs.current[index] = el)} // Сохраняем реф
@@ -68,4 +68,4 @@ const AdminExecutorsList = (props) => {
   );
 };
 
-export default AdminExecutorsList;
+export default AdminAgentsList;

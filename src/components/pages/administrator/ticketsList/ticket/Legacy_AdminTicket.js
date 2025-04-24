@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import "./AdminRequest.css";
+import "./Legacy_AdminTicket.css";
 import {
   changeTicketStatus,
   changeTicketAgent,
   fetchTicket,
 } from "../../../../../services/TicketServices";
-import AdminExecutorsList from "./executorsList/AdminExecutorsList";
+import AdminAgentsList from "./agentsList/AdminAgentsList";
 
-const UserRequest = (props) => {
+const Legacy_AdminTicket = (props) => {
   const [isSaveButtonVisible, setSaveButtonVisible] = useState(false);
   const [isAgentsListVisible, setAgentsListVisible] = useState(false);
 
@@ -143,7 +143,7 @@ const UserRequest = (props) => {
         </div>
       )}
       {isAgentsListVisible && (
-        <AdminExecutorsList
+        <AdminAgentsList
           onChooseExecutor={chooseAgentsHandler}
           onCloseExecutorsList={hideExecutorsListHandler}
         />
@@ -152,4 +152,4 @@ const UserRequest = (props) => {
   );
 };
 
-export default UserRequest;
+export default Legacy_AdminTicket;

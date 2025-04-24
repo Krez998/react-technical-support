@@ -1,7 +1,7 @@
 import { useEffect, useImperativeHandle, useState, forwardRef } from "react";
-import "../executorNote/ExecutorNote.css";
+import "./AgentNote.css";
 
-const ExecutorNote = forwardRef((props, ref) => {
+const AgentNote = forwardRef((props, ref) => {
   
   const [color, setColor] = useState("transparent");
   const handleMouseEnter = (event) => {
@@ -27,7 +27,7 @@ const ExecutorNote = forwardRef((props, ref) => {
 
   return (
     <div
-      className="executor-note"
+      className="agent-note"
       onClick={chooseHandler}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -42,4 +42,4 @@ const ExecutorNote = forwardRef((props, ref) => {
   );
 });
 
-export default ExecutorNote;
+export default AgentNote;

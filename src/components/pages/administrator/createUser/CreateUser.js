@@ -1,7 +1,8 @@
 import "./CreateUser.css";
 import { useState } from "react";
+import { createUser } from "../../../../services/UserServices";
 
-function CreateUser({ onCreate }) {
+function CreateUser({ onClose }) {
   const [userData, setUserData] = useState({
     login: null,
     password: null,
@@ -10,55 +11,77 @@ function CreateUser({ onCreate }) {
     patronymic: null,
     role: 0,
   });
+  //const [error, setError] = useState();
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    onCreate(userData);
+    //setError(null);
+
+    const response = await createUser(userData);
+
+    if (response.status !== 200) {
+      // преобразование объекта ошибок в массив строк
+      //const errorMessages = Object.values(response.response.data.errors).flat();
+      alert(Object.values(response.response.data.errors).flat());
+    } else if (response.status === 200) {
+      alert("Пользователь успешно создан!");
+    }
   };
 
   return (
-    <form onSubmit={submit} className="new-user-form">
-      <h1>Создание пользователя</h1>
-      <label>Имя</label>
-      <input
-        placeholder="Имя"
-        onChange={(e) =>
-          setUserData({ ...userData, firstName: e.target.value })
-        }
-      />
-      <label>Фамилия</label>
-      <input
-        placeholder="Фамилия"
-        onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
-      />
-      <label>Отчество</label>
-      <input
-        placeholder="Отчество"
-        onChange={(e) =>
-          setUserData({ ...userData, patronymic: e.target.value })
-        }
-      />
-      <label>Логин</label>
-      <input
-        placeholder="Логин"
-        onChange={(e) => setUserData({ ...userData, login: e.target.value })}
-      />
-      <label>Пароль</label>
-      <input
-        placeholder="Пароль"
-        onChange={(e) => setUserData({ ...userData, password: e.target.value })}
-      />
-      <label>Роль</label>
-      <select
-        placeholder="Категория"
-        value={userData.role}
-        onChange={(e) => setUserData({ ...userData, role: Number(e.target.value) })}>
-        <option value={0}>Пользователь</option>
-        <option value={1}>Исполнитель</option>
-        <option value={2}>Администратор</option>
-      </select>
-      <button type="submit" color="blue">Создать</button>
-    </form>
+    <div>
+      <form onSubmit={submit} className="new-user-form">
+        <h1>Создание пользователя</h1>
+        <label>Имя:</label>
+        <input
+          onChange={(e) =>
+            setUserData({ ...userData, firstName: e.target.value })
+          }
+        />
+        <label>Фамилия:</label>
+        <input
+          onChange={(e) =>
+            setUserData({ ...userData, lastName: e.target.value })
+          }
+        />
+        <label>Отчество:</label>
+        <input
+          onChange={(e) =>
+            setUserData({ ...userData, patronymic: e.target.value })
+          }
+        />
+        <label>Логин:</label>
+        <input
+          onChange={(e) => setUserData({ ...userData, login: e.target.value })}
+        />
+        <label>Пароль:</label>
+        <input
+          onChange={(e) =>
+            setUserData({ ...userData, password: e.target.value })
+          }
+        />
+        <label>Роль:</label>
+        <select
+          value={userData.role}
+          onChange={(e) =>
+            setUserData({ ...userData, role: Number(e.target.value) })
+          }
+        >
+          <option value={0}>Пользователь</option>
+          <option value={1}>Исполнитель</option>
+          <option value={2}>Администратор</option>
+        </select>
+        <div>
+          <button onClick={onClose} type="button">
+            Назад
+          </button>
+          <button type="submit" color="blue">
+            Создать
+          </button>
+        </div>
+      </form>
+      {/* {error && <div style={{ color: "red" }}>{error}</div>} */}
+    </div>
   );
 }
 

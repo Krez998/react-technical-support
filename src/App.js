@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import BackgroundContainer from "./components/background/BackgroundContainer";
-import Login from "./components/login/login";
+import Login from "./components/login/Login";
 import UserPage from "./components/pages/user/UserPage"
-import ExecutorPage from "./components/pages/executor/ExecutorPage";
+import AgentPage from "./components/pages/agent/AgentPage";
 import AdminPage from "./components/pages/administrator/AdminPage";
 import {
   BrowserRouter as Router,
@@ -31,7 +31,7 @@ function App() {
           setComponent(<UserPage userData={userData} />);
           break;
         case 1:
-          setComponent(<ExecutorPage userData={userData} />);
+          setComponent(<AgentPage userData={userData} />);
           break;
         case 2:
           setComponent(<AdminPage userData={userData} />);

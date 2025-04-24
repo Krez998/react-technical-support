@@ -2,46 +2,39 @@ import "../Page.css";
 import CreateNewTicket from "../../newRequest/CreateNewTicket";
 import { createTicket } from "../../../services/TicketServices";
 import { useState } from "react";
-import UserRequestsList from "./requestList/UserRequestsList";
-import UserRequest from "./requestList/request/UserRequest";
+import UserTicketsList from "./ticketsList/UserTicketsList";
+import TicketChat from "../../ticketChat/TicketChat";
 
 function UserPage(props) {
-  const [isRequestListVisible, setRequestListVisible] = useState(true);
-  const [isCreateRequestVisible, setCreateRequestFormVisible] = useState(false);
-  const [currentRequest, setCurrentRequestData] = useState({
+  const [isTicketsListVisible, setTicketsListVisible] = useState(true);
+  const [isCreateTicketVisible, setCreateTicketFormVisible] = useState(false);
+  const [currentTicket, setCurrentTicketData] = useState({
     id: null,
-    isVisible: false
+    isVisible: false,
   });
 
   const showTicketsList = () => {
-    setRequestListVisible(true);
-    setCreateRequestFormVisible(false);
-    setCurrentRequestData({...currentRequest, isVisible: false});
+    setTicketsListVisible(true);
+    setCreateTicketFormVisible(false);
+    setCurrentTicketData({ ...currentTicket, isVisible: false });
   };
 
-  const showCreateRequestForm = () => {
-    setCreateRequestFormVisible(true);
-    setRequestListVisible(false);
-    setCurrentRequestData({...currentRequest, isVisible: false});
+  const showCreateTicketForm = () => {
+    setCreateTicketFormVisible(true);
+    setTicketsListVisible(false);
+    setCurrentTicketData({ ...currentTicket, isVisible: false });
   };
 
-  const showRequestWindow = (requestId) => {
-    setRequestListVisible(false);
-    setCreateRequestFormVisible(false);
-    setCurrentRequestData({...currentRequest, id: requestId, isVisible: true});
+  const showTicketWindow = (ticketId) => {
+    setTicketsListVisible(false);
+    setCreateTicketFormVisible(false);
+    setCurrentTicketData({ ...currentTicket, id: ticketId, isVisible: true });
   };
 
-  const createNewRequest = async (ticket) => {
+  const createNewTicket = async (ticket) => {
     await createTicket(ticket);
     showTicketsList();
     // можно обновить список заявок здесь, если это необходимо
-  };
-
-  let style = {
-    backgroundColor: "gray",
-    width: "100%",
-    height: "100%",
-    position: "absolute",
   };
 
   return (
@@ -57,11 +50,11 @@ function UserPage(props) {
       </div>
       <div className="main-window">
         {isCreateRequestVisible && (
-          <CreateNewRequest onCreate={createNewRequest} />
+          <CreateNewRequest onCreate={createNewTicket} />
         )}
         {isRequestListVisible && <UserRequestsList />}
       </div> */}
-      {isRequestListVisible && (
+      {isTicketsListVisible && (
         <div>
           <div className="leftside-menu">
             <h2 className="page-title">Личный кабинет</h2>
@@ -79,37 +72,23 @@ function UserPage(props) {
               </p>
             </div>
             <button>Открыть архив</button>
-            <button onClick={showCreateRequestForm}>Создать заявку</button>
+            <button onClick={showCreateTicketForm}>Создать заявку</button>
           </div>
-
           <div className="content">
             <header>
               <h2 className="content-name">Мои заявки</h2>
             </header>
             <body>
-              <UserRequestsList
-                openRequest={showRequestWindow}
-                onCloseRequest={() => setRequestListVisible(true)}
-              />
+              <UserTicketsList openTicket={showTicketWindow} />
             </body>
           </div>
         </div>
       )}
-      {isCreateRequestVisible && (
-        <CreateNewTicket
-          onClose={showTicketsList}
-          onCreate={createNewRequest}
-        />
+      {currentTicket.isVisible && (
+        <TicketChat onCloseTicket={showTicketsList} id={currentTicket.id} />
       )}
-      {currentRequest.isVisible && (
-        <UserRequest
-          onCloseRequest={showTicketsList}
-          // onSavedChanges={rerenderList}
-          id={currentRequest.id}
-          // title={currentRequest.title}
-          // status={currentRequest.status}
-
-        />
+      {isCreateTicketVisible && (
+        <CreateNewTicket onClose={showTicketsList} onCreate={createNewTicket} />
       )}
     </div>
   );

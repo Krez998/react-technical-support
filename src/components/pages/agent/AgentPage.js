@@ -1,19 +1,25 @@
 import "../Page.css";
 import { useState } from "react";
-import AgentTicketsList from "../executor/requestList/AgentTicketsList";
-import AgentTicket from "./requestList/request/AgentTicket";
+import AgentTicketsList from "./ticketsList/AgentTicketsList";
+import TicketChat from "../../ticketChat/TicketChat";
 
-function ExecutorPage(props) {
-  const [isTicketListVisible, setTicketListVisible] = useState(true);
-  const [isTicketVisible, setIsTicketVisible] = useState(false);
+function AgentPage(props) {
+  const [isTicketsListVisible, setTicketListVisible] = useState(true);
+  //const [isTicketVisible, setIsTicketVisible] = useState(false);
+  const [currentTicket, setCurrentTicketData] = useState({
+    id: null,
+    isVisible: false,
+  });
 
-  const showTicketList = () => {
+  const showTicketsList = () => {
     setTicketListVisible(true);
+    setCurrentTicketData({ ...currentTicket, isVisible: false });
   };
 
   const showTicketWindow = (ticketId) => {
-    setIsTicketVisible(true);
+    //setIsTicketVisible(true);
     setTicketListVisible(false);
+    setCurrentTicketData({ ...currentTicket, id: ticketId, isVisible: true });
   };
 
   return (
@@ -34,7 +40,7 @@ function ExecutorPage(props) {
     //   )}
     // </section>
     <div>
-      {isTicketListVisible && (
+      {isTicketsListVisible && (
         <div>
           <div className="leftside-menu">
             <h2 className="page-title">Личный кабинет</h2>
@@ -53,27 +59,21 @@ function ExecutorPage(props) {
             </div>
             <button>Открыть архив</button>
           </div>
-
           <div className="content">
             <header>
               <h2 className="content-name">Мои заявки</h2>
             </header>
             <body>
-              <AgentTicketsList
-                openRequest={showTicketWindow}
-                onCloseRequest={() => setTicketListVisible(true)}
-              />
+              <AgentTicketsList openTicket={showTicketWindow} />
             </body>
           </div>
         </div>
       )}
-      {isTicketVisible && (
-        <AgentTicket
-          onCloseRequest={showTicketList}
-        />
+      {currentTicket.isVisible && (
+        <TicketChat onCloseTicket={showTicketsList} id={currentTicket.id} />
       )}
     </div>
   );
 }
 
-export default ExecutorPage;
+export default AgentPage;

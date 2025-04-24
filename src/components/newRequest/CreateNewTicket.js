@@ -3,6 +3,8 @@ import { useState } from "react";
 
 function CreateNewTicket({ onClose, onCreate }){
     const [ticket, setTicket] = useState({
+        userId: localStorage.getItem("userId"),
+        status: 1,
         issueType: 'Принтер',
         priority: 'срочно'
       });
