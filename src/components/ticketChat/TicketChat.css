@@ -1,149 +1,167 @@
 .ticket-chat-background {
-    background-color: #8391A2;
-    /* background-color: #6C757D; */
-    /* background-color: #727CF5; */
-    /* background-color: #8391A2; */
-    /* background-color: #0ACF97 */
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #8391a2;
+  /* background-color: #6C757D; */
+  /* background-color: #727CF5; */
+  /* background-color: #8391A2; */
+  /* background-color: #0ACF97 */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.ticket-chat-content {
-    background-color: whitesmoke;
-    position: absolute;
-    width: 60%;
-    height: 90%;
-    padding: 20px 20px 0px 20px;
-    border-radius: 10px;
+.ticket-chat-content-left {
+  background-color: whitesmoke;
+  width: 50%;
+  height: 95%;
+  padding: 20px 0px 20px 20px;
+  border-radius: 10px 0px 0px 10px;
+  box-sizing: border-box;
+}
+
+.ticket-chat-content-right {
+  background-color: whitesmoke;
+  width: 15%;
+  height: 95%;
+  padding: 20px 10px 20px 10px;
+  border-radius: 0px 10px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .ticket-chat-content-return-btn {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: large;
-    color: #727CF5;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: large;
+  color: #727ff5;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .ticket-chat-info {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    height: 150px;
-    border: 2px solid #727CF5;
-    border-radius: 10px;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 100%;
+  border: 0px solid #727cf5;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
-.ticket-chat-info-first-row {
-    /* overflow: hidden; */
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
+.info-item:nth-of-type(1) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 15px;
 }
 
-.ticket-chat-info-first-row h1 {
-    width: 200px;
-    margin: 0;
-    /* padding: 0px 10px 0px 20px;
-    margin-top: 5px;
-    margin-bottom: 0px; */
+.info-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.ticket-chat-info-first-row div {
-    /* margin-top: 5px; */
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+.info-item .title {
+  /* background-color: rgb(223, 223, 223); */
+  color: rgb(94, 94, 94);
+  /* background: #eeeeee; */
+  /* background: linear-gradient(
+    to bottom,
+    #dadada 0%,
+    #e7e7e7 50%,
+    transparent 100%
+  ); */
+  /* border-radius: 5px; */
+  padding: 10px 12px 2px 10px;
+  width: 100%;
+  font-size: medium;
+  font-weight: bolder;
+  box-sizing: border-box;
+  /* margin-bottom: 4px; */
 }
 
-.ticket-chat-info-first-row div > p {
-    margin: 0;
-    /*
-    padding: 0px 10px 0px 10px; */
-    font-size: medium;
-    width: 100%; 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.info-item .value--first {
+  padding: 4px 12px 20px 12px;
+  color: #333;
+  font-size: medium !important;
+  font-weight: bold;
 }
 
-.ticket-chat-info-first-row div:nth-of-type(1) {
-    margin-right: 20px;
-}
-
-.ticket-chat-info-second-row > p {
-    margin: 10px 10px 10px 10px;
+.info-item .value {
+  padding: 0px 12px 10px 10px;
+  color: #333;
+  font-size: small;
 }
 
 .request-chat-message-container {
-    list-style: none;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    background-color: white;
-    height: calc(100% - 350px);
-    min-height: 200px;
-    margin-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    /* border: 2px solid #f57272; */
-    border-radius: 10px;
-    overflow-y: auto;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  background-color: white;
+  /* height: calc(100% - 350px); */
+  height: calc(70%);
+  min-height: 200px;
+  margin-top: 10px;
+  padding: 10px 10px 10px 10px;
+  /* border: 2px solid #f57272; */
+  /* border-radius: 10px; */
+  overflow-y: auto;
 }
 
 .ticket-chat-self-message {
-    border-radius: 10px;
-    border: 2px solid #727CF5;
-    background-color: #cbcfff;
-    padding: 8px;
-    max-width: 500px;
-    align-self: flex-end;
+  border-radius: 3px;
+  /* border: 1px solid #727cf5; */
+  background-color: #cbcfff50;
+  padding: 8px;
+  max-width: 500px;
+  align-self: flex-end;
 }
 
 .ticket-chat-other-message {
-    border-radius: 10px;
-    border: 2px solid #727CF5;
-    padding: 8px;
-    max-width: 500px;
-    align-self: flex-start;
+  border-radius: 3px;
+  /* border: 1px solid #727cf5; */
+  background-color: rgba(128, 128, 128, 0.123);
+  padding: 8px;
+  max-width: 500px;
+  align-self: flex-start;
 }
 
 .message-input-container {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
-    height: 40px;
-    /* border: 2px solid #6C757D; */
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: calc(5%);
+  /* border: 2px solid #6C757D; */
 }
 
 .message-input-container input {
-    border: 2px solid #8391A2;
-    border-radius: 5px;
-    width: 100%;
-    height: 30px;
-    margin-right: 15px;
+  border: 1px solid #8391a2;
+  border-radius: 5px;
+  width: 100%;
+  height: 30px;
+  padding: 3px;
+  margin-right: 15px;
+  font-size: medium;
 }
 
 .message-input-container button:nth-of-type(1) {
-    background-color: #0ACF97;
-    border: 0px solid rgb(10, 207, 151);
-    box-shadow: 0 1px 7px rgba(10, 207, 151, 0.5);
-    border-radius: 5px;
-    color: white;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    width: 100px;
-    height: 35px;
+  background-color: #0acf97;
+  border: 0px solid rgb(10, 207, 151);
+  box-shadow: 0 1px 7px rgba(10, 207, 151, 0.5);
+  border-radius: 5px;
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  width: 100px;
+  height: 35px;
 }
 
 .message-input-container button:nth-of-type(1):hover {
-    background-color: #09bf8c;
+  background-color: #09bf8c;
 }

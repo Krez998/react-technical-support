@@ -29,24 +29,34 @@ function Login({ onAuth }) {
   };
 
   return (
-    <div>
+    <div className="login-background">
       <form onSubmit={handleSubmit} className="login-form">
-        <h2>Авторизация</h2>
+        <h1>Вход в систему</h1>
+        <label for="userName">Логин</label>
         <input
+          id="userName"
           type="text"
-          placeholder="Логин"
+          // placeholder="Логин"
           value={userData.login}
           onChange={(e) => setUserData({ ...userData, login: e.target.value })}
         />
+
+        <label for="password">Пароль</label>
         <input
+          id="password"
           type="password"
-          placeholder="Пароль"
+          // placeholder="Пароль"
           value={userData.password}
           onChange={(e) =>
             setUserData({ ...userData, password: e.target.value })
           }
         />
+        <p>
+          Если нет учетной записи - перейти на страницу{" "}
+          <a href="https://example.com">регистрации</a>
+        </p>
         <button type="submit">Войти</button>
+        <a href="https://example.com">Восстановить доступ</a>
       </form>
       {error && <div style={{ color: "red" }}>{error}</div>}
     </div>

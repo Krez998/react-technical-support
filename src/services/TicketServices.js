@@ -20,6 +20,8 @@ export const createTicket = async (ticket) => {
 
 export const fetchTicket = async (id) => {
   try {
+    console.log("fetchTicket" + "  id:" + id);
+
     const token = localStorage.getItem("token");
     const response = await axios.get(
       `https://localhost:7257/api/Tickets/${id}`,
@@ -91,6 +93,9 @@ export const changeTicketAgent = async (data) => {
 
 export const sendMessage = async (data) => {
   try {
+    console.log("Отправка сообщения:");
+    console.log(data);
+
     const token = localStorage.getItem("token");
     const response = await axios.post(
       "https://localhost:7257/api/Messages/send",
@@ -102,6 +107,27 @@ export const sendMessage = async (data) => {
       }
     );
     return response;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const createChat = async (data) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      "https://localhost:7257/api/Messages/createChat",
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log("Создан чат с id: " + response.data);
+
+    return response.data;
   } catch (e) {
     console.error(e);
   }

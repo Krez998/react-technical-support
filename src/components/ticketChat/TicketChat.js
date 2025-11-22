@@ -1,6 +1,10 @@
 import "./TicketChat.css";
 import { useEffect, useState } from "react";
-import { fetchTicket, sendMessage } from "../../services/TicketServices";
+import {
+  fetchTicket,
+  sendMessage,
+  createChat,
+} from "../../services/TicketServices";
 import moment from "moment";
 import "moment/locale/ru";
 moment.locale();
@@ -61,21 +65,37 @@ function TicketChat(props) {
   }, [ticketData]);
 
   const sendMessageHandler = async () => {
-    if (!ticketData.chatId) return; // нельзя отправить сообщение пока не создан чат
-    const newMessage = {
-      senderId: userId,
-      chatId: ticketData.chatId,
-      content: messageContent,
-    };
+    if (!messageContent.trim()) return;
 
-    const response = await sendMessage(newMessage);
+    let chatId = ticketData?.chatId;
+
+    // если чат в заявке еще не создан
+    if (!chatId) {
+      chatId = await createChat({ ticketId: ticketData.id });
+      setTicketData((prev) => ({ ...prev, chatId: chatId }));
+    }
+
+    const response = await sendMessage({
+      senderId: userId,
+      chatId: chatId,
+      content: messageContent,
+    });
+
     const updatedData = await fetchTicket(props.id);
     setTicketData(updatedData);
     response && setMessageContent("");
   };
 
+  // обработка нажатия на Enter
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessageHandler();
+    }
+  };
+
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <h1>Загрузка...</h1>;
   }
 
   if (!ticketData) {
@@ -84,7 +104,7 @@ function TicketChat(props) {
 
   return (
     <div className="ticket-chat-background">
-      <div className="ticket-chat-content">
+      <div className="ticket-chat-content-left">
         <button
           className="ticket-chat-content-return-btn"
           type="button"
@@ -92,33 +112,9 @@ function TicketChat(props) {
         >
           Мои заявки
         </button>
-        <div className="ticket-chat-info">
-          <div className="ticket-chat-info-first-row">
-            <h1>{ticketData.id}</h1>
-            <div>
-              <p>Статус: {ticketStatus}</p>
-              <p>
-                Исполнитель:{" "}
-                {ticketData.executorFullName == null
-                  ? "не назначен"
-                  : ticketData.executorFullName}
-              </p>
-            </div>
-            <div>
-              <p>
-                Дата и время:{" "}
-                {moment(ticketData.createdAt).format("D MMMM YYYY, HH:mm")}
-              </p>
-              <p>Кем создан: {ticketData.userFullName}</p>
-            </div>
-          </div>
-          <div className="ticket-chat-info-second-row">
-            <p>{ticketData.description}</p>
-          </div>
-        </div>
         <ul className="request-chat-message-container">
           {ticketData.messages.map((message) => {
-            console.log(typeof message.senderId);
+            // console.log(message.senderId);
             if (message.senderId === userId) {
               return (
                 <li className="ticket-chat-self-message" key={message.id}>
@@ -139,10 +135,45 @@ function TicketChat(props) {
             placeholder="Введите ваще сообщение..."
             value={messageContent}
             onChange={(e) => setMessageContent(e.target.value)}
-          ></input>
+            onKeyDown={handleKeyPress}
+          />
           <button type="button" onClick={sendMessageHandler}>
             Отправить
           </button>
+        </div>
+      </div>
+      <div className="ticket-chat-content-right">
+        <div className="ticket-chat-info">
+          <div className="info-item">
+            <span className="title">Заявка&nbsp;</span>
+            <span className="value value--first">{ticketData.id}</span>
+          </div>
+          <div className="info-item">
+            <span className="title">Статус</span>
+            <span className="value">{ticketStatus}</span>
+          </div>
+          <div className="info-item">
+            <span className="title">Исполнитель</span>
+            <span className="value">
+              {ticketData.executorFullName == null
+                ? "не назначен"
+                : ticketData.executorFullName}
+            </span>
+          </div>
+          <div className="info-item">
+            <span className="title">Дата и время</span>
+            <span className="value">
+              {moment(ticketData.createdAt).format("D MMMM YYYY, HH:mm")}
+            </span>
+          </div>
+          <div className="info-item">
+            <span className="title">Кем создан</span>
+            <span className="value">{ticketData.userFullName}</span>
+          </div>
+          {/* <div className="info-item">
+            <span className="title">Описание</span>
+            <span className="value">{ticketData.description}</span>
+          </div> */}
         </div>
       </div>
     </div>

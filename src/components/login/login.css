@@ -1,48 +1,102 @@
-.login-form {
-    background-color: #aac4d1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    transform: translate(-50%, -50%);
-    align-items: center;  
-    width: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    
-    gap: 1rem;
-    padding: 1rem;
-    margin: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
+.login-background {
+  /* background-color: #f0f0f0; */
+  background-color: #dee2e6;
+  /* background-color: #262b2e; */
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.login-form h2 {
-    text-align: center;
-    margin: 0 auto;
+.login-form {
+  background-color: white;
+  /* background-color: #1b1f22; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  align-items: center;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 1rem; */
+  padding: 30px;
+  margin: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  /* box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25); */
+}
+
+.login-form h1 {
+  text-align: center;
+  /* font-size: ; */
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  margin: 0 auto;
+  color: #545454;
+  margin-bottom: 20px;
+}
+
+.login-form p {
+  text-align: center;
+  text-align: left;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  margin: 0 auto;
+  color: #545454;
+  margin-bottom: 30px;
+}
+
+.login-form a {
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.login-form label {
+  color: #545454;
+  text-align: left;
+  font-size: large;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  max-width: 100%;
+  width: 100%;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 
 .login-form input {
-    font: inherit;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 400px;
-    max-width: 100%;
+  font: inherit;
+  background-color: #f0f0f0;
+  padding: 0.5rem;
+  font-size: large;
+  border-radius: 10px;
+  color: 545454;
+  border: 2px solid #ccc;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 15px;
 }
 
 .login-form button {
-    font: inherit;
-    cursor: pointer;
-    border: 1px solid #2a5b84;
-    background-color: #2a5b84;
-    color: #fefae1;
-    border-radius: 10px;
-    margin-right: 3px;
-    width: 400px;
-    height: 50px;
-    max-width: 100%;
+  font: inherit;
+  cursor: pointer;
+  font-size: larger;
+  border: 1px solid #2b36ff;
+  background-color: #2b36ff;
+  color: #fefae1;
+  border-radius: 10px;
+  margin-right: 3px;
+  margin-bottom: 20px;
+  width: 400px;
+  height: 50px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .login-form button:hover,
