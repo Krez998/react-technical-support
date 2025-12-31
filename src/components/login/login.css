@@ -36,7 +36,7 @@
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   margin: 0 auto;
-  color: #545454;
+  color: #1f1f1f;
   margin-bottom: 20px;
 }
 
@@ -46,7 +46,7 @@
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   margin: 0 auto;
-  color: #545454;
+  color: #1f1f1f;
   margin-bottom: 30px;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .login-form label {
-  color: #545454;
+  color: #1f1f1f;
   text-align: left;
   font-size: large;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -72,12 +72,12 @@
 
 .login-form input {
   font: inherit;
-  background-color: #f0f0f0;
+  background-color: white;
   padding: 0.5rem;
   font-size: large;
   border-radius: 10px;
   color: 545454;
-  border: 2px solid #ccc;
+  border: 1px solid #2b36ff;
   width: 100%;
   max-width: 100%;
   margin-bottom: 15px;

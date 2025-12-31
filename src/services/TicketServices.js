@@ -20,8 +20,6 @@ export const createTicket = async (ticket) => {
 
 export const fetchTicket = async (id) => {
   try {
-    console.log("fetchTicket" + "  id:" + id);
-
     const token = localStorage.getItem("token");
     const response = await axios.get(
       `https://localhost:7257/api/Tickets/${id}`,
@@ -42,7 +40,8 @@ export const fetchTickets = async (filter) => {
     const token = localStorage.getItem("token");
     const response = await axios.get("https://localhost:7257/api/Tickets", {
       params: {
-        status: filter?.status,
+        userId: filter?.userId,
+        IsShowClosed: filter.showClosed,
         isShowNotAssigned: filter?.isShowNotAssigned,
       },
       headers: {
@@ -59,8 +58,11 @@ export const changeTicketStatus = async (data) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.patch(
-      `https://localhost:7257/api/Tickets/setStatus/${data.id}?status=${data.status}`,
-      null,
+      `https://localhost:7257/api/Tickets/setStatus`,
+      {
+        id: data.id,
+        status: data.status,
+      },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -69,7 +71,8 @@ export const changeTicketStatus = async (data) => {
     );
     return response;
   } catch (e) {
-    console.error(e);
+    console.error("Ошибка при изменении статуса заявки:", e);
+    throw e;
   }
 };
 
@@ -93,9 +96,6 @@ export const changeTicketAgent = async (data) => {
 
 export const sendMessage = async (data) => {
   try {
-    console.log("Отправка сообщения:");
-    console.log(data);
-
     const token = localStorage.getItem("token");
     const response = await axios.post(
       "https://localhost:7257/api/Messages/send",
@@ -124,8 +124,6 @@ export const createChat = async (data) => {
         },
       }
     );
-
-    console.log("Создан чат с id: " + response.data);
 
     return response.data;
   } catch (e) {

@@ -9,7 +9,7 @@ import TicketNotes from "../../../requestNote/TicketNotes";
 function AdminTicketsList(props) {
   const [tickets, setTickets] = useState([]);
   const [filter, setFilter] = useState({
-    status: 5,
+    showClosed: false,
     isShowNotAssigned: false,
   });
   const [listType, setListType] = useState(1);
@@ -17,8 +17,8 @@ function AdminTicketsList(props) {
 
   const hideClosedTickets = (state) => {
     state
-      ? setFilter({ ...filter, status: 5 })
-      : setFilter({ ...filter, status: null });
+      ? setFilter({ ...filter, showClosed: false })
+      : setFilter({ ...filter, showClosed: true });
   };
 
   const showNotAssignedTickets = (state) => {

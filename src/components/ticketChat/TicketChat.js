@@ -1,9 +1,10 @@
 import "./TicketChat.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   fetchTicket,
   sendMessage,
   createChat,
+  changeTicketStatus,
 } from "../../services/TicketServices";
 import moment from "moment";
 import "moment/locale/ru";
@@ -16,6 +17,8 @@ function TicketChat(props) {
   const [messageContent, setMessageContent] = useState("");
   const userId = Number(localStorage.getItem("userId"));
 
+  const messageEndRef = useRef(null);
+
   useEffect(() => {
     const loadData = async () => {
       const response = await fetchTicket(props.id);
@@ -26,32 +29,47 @@ function TicketChat(props) {
     loadData();
   }, [props.id]);
 
+  const setStatusButtonHadler = async (e) => {
+    try {
+      let relustStatus = parseInt(e.target.value);
+
+      if (parseInt(ticketData.status) === relustStatus) return;
+
+      setTicketData((prev) => ({ ...prev, status: relustStatus }));
+
+      await changeTicketStatus({
+        id: ticketData.id,
+        status: parseInt(relustStatus),
+      });
+    } catch (e) {}
+  };
+
   useEffect(() => {
     const getStatus = () => {
       switch (ticketData.status) {
         case 0:
-          setStatus("создан");
+          setStatus("Создан");
           return;
         case 1:
-          setStatus("назначен");
+          setStatus("Назначен");
           return;
         case 2:
-          setStatus("в обработке");
+          setStatus("В обработке");
           return;
         case 3:
-          setStatus("на удержании");
+          setStatus("На удержании");
           return;
         case 4:
-          setStatus("решен");
+          setStatus("Решен");
           return;
         case 5:
-          setStatus("закрыт");
+          setStatus("Закрыт");
           return;
         case 6:
-          setStatus("переоткрыт");
+          setStatus("Переоткрыт");
           return;
         case 7:
-          setStatus("отменен (самим пользователем)");
+          setStatus("Отменен (самим пользователем)");
           return;
         default:
           setStatus("");
@@ -85,6 +103,12 @@ function TicketChat(props) {
     setTicketData(updatedData);
     response && setMessageContent("");
   };
+
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [ticketData]);
 
   // обработка нажатия на Enter
   const handleKeyPress = (e) => {
@@ -129,6 +153,7 @@ function TicketChat(props) {
               );
             }
           })}
+          {<div ref={messageEndRef}></div>}
         </ul>
         <div className="message-input-container">
           <input
@@ -163,7 +188,7 @@ function TicketChat(props) {
           <div className="info-item">
             <span className="title">Дата и время</span>
             <span className="value">
-              {moment(ticketData.createdAt).format("D MMMM YYYY, HH:mm")}
+              {moment(ticketData.registrationDate).format("D MMMM YYYY, HH:mm")}
             </span>
           </div>
           <div className="info-item">
@@ -174,7 +199,27 @@ function TicketChat(props) {
             <span className="title">Описание</span>
             <span className="value">{ticketData.description}</span>
           </div> */}
+          {props.userRole !== 0 && (
+            <select
+              name="statuses"
+              id="statusSelector"
+              className="ticket-chat-status-select"
+              value={ticketData.status}
+              onChange={setStatusButtonHadler}
+            >
+              <option value="0">Создан</option>
+              <option value="1">Назначен</option>
+              <option value="2">В обработке</option>
+              <option value="3">На удержании</option>
+              <option value="4">Решен</option>
+              <option value="5">Закрыт</option>
+              <option value="6">Переоткрыт</option>
+              <option value="7">Отменен (самим пользователем)</option>
+            </select>
+          )}
         </div>
+
+        {/* <div className="ticket-chat-settings"></div> */}
       </div>
     </div>
   );

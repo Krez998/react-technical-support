@@ -29,38 +29,38 @@ function CreateUser({ onClose }) {
   };
 
   return (
-    <div>
+    <div className="new-user-container">
       <form onSubmit={submit} className="new-user-form">
         <h1>Создание пользователя</h1>
-        <label>Имя:</label>
+        <label>Имя</label>
         <input
           onChange={(e) =>
             setUserData({ ...userData, firstName: e.target.value })
           }
         />
-        <label>Фамилия:</label>
+        <label>Фамилия</label>
         <input
           onChange={(e) =>
             setUserData({ ...userData, lastName: e.target.value })
           }
         />
-        <label>Отчество:</label>
+        <label>Отчество</label>
         <input
           onChange={(e) =>
             setUserData({ ...userData, patronymic: e.target.value })
           }
         />
-        <label>Логин:</label>
+        <label>Логин</label>
         <input
           onChange={(e) => setUserData({ ...userData, login: e.target.value })}
         />
-        <label>Пароль:</label>
+        <label>Пароль</label>
         <input
           onChange={(e) =>
             setUserData({ ...userData, password: e.target.value })
           }
         />
-        <label>Роль:</label>
+        <label>Роль</label>
         <select
           value={userData.role}
           onChange={(e) =>
@@ -71,13 +71,11 @@ function CreateUser({ onClose }) {
           <option value={1}>Исполнитель</option>
           <option value={2}>Администратор</option>
         </select>
-        <div>
+        <div className="new-user-form-buttons">
           <button onClick={onClose} type="button">
             Назад
           </button>
-          <button type="submit" color="blue">
-            Создать
-          </button>
+          <button type="submit">Создать</button>
         </div>
       </form>
       {/* {error && <div style={{ color: "red" }}>{error}</div>} */}

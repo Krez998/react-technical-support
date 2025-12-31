@@ -79,13 +79,20 @@ function UserPage(props) {
               <h2 className="content-name">Мои заявки</h2>
             </header>
             <body>
-              <UserTicketsList openTicket={showTicketWindow} />
+              <UserTicketsList
+                openTicket={showTicketWindow}
+                userId={props.userData.id}
+              />
             </body>
           </div>
         </div>
       )}
       {currentTicket.isVisible && (
-        <TicketChat onCloseTicket={showTicketsList} id={currentTicket.id} />
+        <TicketChat
+          onCloseTicket={showTicketsList}
+          id={currentTicket.id}
+          userRole={props.userData.role}
+        />
       )}
       {isCreateTicketVisible && (
         <CreateNewTicket onClose={showTicketsList} onCreate={createNewTicket} />

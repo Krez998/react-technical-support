@@ -9,15 +9,16 @@ import TicketNotes from "../../../requestNote/TicketNotes";
 function UserTicketsList(props) {
   const [tickets, setTickets] = useState([]);
   const [filter, setFilter] = useState({
-    status: 5,
+    userId: props.userId,
+    showClosed: false,
   });
   const [listType, setListType] = useState(1);
   const [isTicketChangesSaved, setIsTicketChangesSaved] = useState(false);
 
   const hideClosedTickets = (state) => {
     state
-      ? setFilter({ ...filter, status: 5 })
-      : setFilter({ ...filter, status: null });
+      ? setFilter({ ...filter, showClosed: false })
+      : setFilter({ ...filter, showClosed: true });
   };
 
   const fetchData = async () => {

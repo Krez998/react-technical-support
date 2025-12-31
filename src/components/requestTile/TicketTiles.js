@@ -28,6 +28,8 @@ function TicketTiles(props) {
       case 7:
         info = "Отменен (самим пользователем)";
         break;
+      default:
+        info = "загрузка...";
     }
     return info;
   };

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import BackgroundContainer from "./components/background/BackgroundContainer";
 import Login from "./components/login/Login";
-import UserPage from "./components/pages/user/UserPage"
+import UserPage from "./components/pages/user/UserPage";
 import AgentPage from "./components/pages/agent/AgentPage";
 import AdminPage from "./components/pages/administrator/AdminPage";
 import {
@@ -16,7 +16,6 @@ import {
 } from "react-router-dom";
 
 function App() {
-
   const [componentToRender, setComponent] = useState(null);
   const [userData, setUserData] = useState(null);
 
@@ -39,8 +38,7 @@ function App() {
         default:
           setComponent(<Login onAuth={getUserData} />);
       }
-    }
-    else {
+    } else {
       setComponent(<Login onAuth={getUserData} />);
     }
   }, [userData]);

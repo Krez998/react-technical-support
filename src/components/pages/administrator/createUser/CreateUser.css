@@ -1,85 +1,102 @@
+.new-user-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .new-user-form {
-    min-width: 450px;
-    align-self: start;   
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    /* gap: 1rem; */
-    text-align: center;
-    padding: 1rem;
-    margin: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
+  width: 50%;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  text-align: left;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
+}
+
+.new-ticket-form h1 {
+  text-align: left;
 }
 
 .new-user-form label {
-    font-size: large;  
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    font-weight: bold;
-    text-align: left;
-    border-radius: 5px;
-    margin-left: 2px;
-    margin-bottom: 5px;
-    max-width: 100%;
+  font-size: large;
+  font-weight: bold;
+  text-align: left;
+  border-radius: 5px;
+  max-width: 100%;
 }
 
 .new-user-form input {
-    font: inherit;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    max-width: 100%;
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  max-width: 100%;
 }
 
 .new-user-form select {
-    font: inherit;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    max-width: 100%;
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  /* margin-bottom: 20px; */
+  max-width: 100%;
 }
 
 .new-user-form textarea {
-    font: inherit;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    max-width: 100%;
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  max-width: 100%;
+}
+
+.new-user-form-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .new-user-form button:nth-of-type(1) {
-    font: inherit;
-    cursor: pointer;
-    float: left;
-    border: 1px solid #2a5b84;
-    background-color: #555555;
-    color: #fefae1;
-    border-radius: 10px;
-    margin-right: 3px;
-    width: 200px;
-    height: 50px;
-    max-width: 100%;
+  font: inherit;
+  cursor: pointer;
+  /* float: left; */
+  border: 1px solid #2623ff;
+  background-color: white;
+  color: #2623ff;
+  border-radius: 10px;
+  flex: 1;
+  /* margin-right: 3px; */
+  max-width: 200px;
+  min-width: 50px;
+  /* padding: 0 50px 0 50px; */
+  height: 50px;
+  /* max-width: 100%; */
 }
 
 .new-user-form button:nth-of-type(2) {
-    font: inherit;
-    cursor: pointer;
-    float: right;
-    border: 1px solid #2a5b84;
-    background-color: #2a842a;
-    color: #fefae1;
-    border-radius: 10px;
-    margin-right: 3px;
-    width: 200px;
-    height: 50px;
-    max-width: 100%;
+  font: inherit;
+  cursor: pointer;
+  /* float: right; */
+  border: 1px solid #2623ff;
+  background-color: white;
+  color: #2623ff;
+  border-radius: 10px;
+  flex: 1;
+  /* margin-right: 3px; */
+  max-width: 200px;
+  min-width: 50px;
+  /* padding: 0 50px 0 50px; */
+  height: 50px;
+  /* max-width: 100%; */
 }
-
 
 .new-user-form button:hover,
 .new-user-form button:active {
-  background-color: #2a5c84b2;
-  border-color: #2a5c84b2;
+  background-color: #2623ff;
+  color: white;
 }
